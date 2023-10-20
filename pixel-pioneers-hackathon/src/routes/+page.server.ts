@@ -1,7 +1,11 @@
 import { PrismaClient } from '@prisma/client/edge';
 import type { PageServerLoad } from './$types';
 
-let prisma: any = new PrismaClient();
+import { env } from '$env/dynamic/private';
+
+let prisma: any = new PrismaClient({
+	datasourceUrl: env.DATABASE_URL
+});
 
 async function getRecord() {
 	return await prisma.user.findFirst();
