@@ -1,11 +1,7 @@
-// import {PrismaClient} from '@prisma/client'
-import { PrismaClient } from '@prisma/client/edge'
+import {PrismaClient} from '@prisma/client'
 import type {PageServerLoad} from './$types';
-import {withAccelerate} from "@prisma/extension-accelerate";
 
-// const prisma = new PrismaClient();
-const prisma = new PrismaClient().$extends(withAccelerate())
-
+const prisma = new PrismaClient();
 
 async function getRecord() {
     return await prisma.user.findFirst();
@@ -19,6 +15,6 @@ export const load: PageServerLoad = async () => {
 
     } catch (error) {
         console.log(error);
-        return {"error": error};
+        return {"error":error};
     }
 };
