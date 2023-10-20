@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "npx prisma generate && vite dev",
-    "build": "npx prisma generate && vite build",
+    "build": "npx prisma generate --no-engine && vite build",
     "preview": "npx prisma generate && vite preview",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
@@ -41,6 +41,8 @@
   "dependencies": {
     "@floating-ui/dom": "1.5.3",
     "@prisma/client": "^5.4.2",
-    "@prisma/extension-accelerate": "^0.6.2"
+    "@prisma/extension-accelerate": "^0.6.2",
+    "@sentry/node": "^7.74.1",
+    "wrangler": "^3.14.0"
   }
 }

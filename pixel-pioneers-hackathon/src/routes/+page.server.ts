@@ -1,7 +1,7 @@
-import {PrismaClient} from '@prisma/client'
+import {PrismaClient} from '@prisma/client/edge'
 import type {PageServerLoad} from './$types';
 
-const prisma = new PrismaClient();
+let prisma: any = new PrismaClient();
 
 async function getRecord() {
     return await prisma.user.findFirst();
@@ -9,12 +9,16 @@ async function getRecord() {
 
 export const load: PageServerLoad = async () => {
     try {
-        const a = await getRecord();
-        console.log(a);
-        return {rows: a};
+        const r = await getRecord();
+        return {"record": r, "error": null}; // Indicate success
+    } catch (e) {
+        // @ts-ignore
+        let err = {
+            "name": e?.name,
+            "message": e?.message,
+            "stack": e?.stack,
+        }
 
-    } catch (error) {
-        console.log(error);
-        return {"error":error};
+        return {"record": null, "error": JSON.stringify(err)};
     }
 };
