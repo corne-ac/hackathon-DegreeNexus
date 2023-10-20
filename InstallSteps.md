@@ -9,3 +9,12 @@ cd pixel-pioneers-hackathon
 pnpm install
 pnpm run dev
 ```
+
+## Set up prisma
+
+```code
+pnpm install prisma --save-dev
+
+cli access
+npx prisma init
+```
