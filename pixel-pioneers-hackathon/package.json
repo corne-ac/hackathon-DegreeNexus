@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "npx prisma generate && vite dev",
+    "dev_open": "npm run dev -- --open",
     "build": "npx prisma generate --no-engine && vite build",
     "preview": "npx prisma generate && vite preview",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
@@ -22,6 +23,7 @@
     "@types/node": "20.8.7",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
+    "@vite-pwa/sveltekit": "^0.2.7",
     "autoprefixer": "10.4.16",
     "eslint": "^8.28.0",
     "eslint-config-prettier": "^8.5.0",
