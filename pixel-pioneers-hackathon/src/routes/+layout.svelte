@@ -12,11 +12,8 @@
 
 
   const popupTheme: PopupSettings = {
-    // Represents the type of event that opens/closed the popup
     event: "click",
-    // Matches the data-popup value on your popup element
     target: "popupTheme",
-    // Defines which side of your trigger the popup will appear
     placement: "bottom"
   };
 

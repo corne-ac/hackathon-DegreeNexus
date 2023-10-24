@@ -29,7 +29,7 @@
       <p>Username</p>
       <div class="input-group input-group-divider grid-cols-[1fr_auto]">
         <input type="text" placeholder="Enter Username..." />
-        <a  title="Username already in use.">(icon)</a>
+        <a href="/" title="Username already in use.">(icon)</a>
       </div>
 
     </section>
