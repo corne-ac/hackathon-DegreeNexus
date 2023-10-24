@@ -12,9 +12,9 @@
   export let data: PageData;
 </script>
 
-<div class="w-full max-w-4xl mx-auto space-y-10">
+<!--<div class="w-full max-w-4xl mx-auto space-y-10">-->
+<div class="max-w-8xl mx-auto px-4 sm:px-6 md:px-8">
   <CodeBlock lineNumbers="true" language="json" code={JSON.stringify(data, null, 1)}></CodeBlock>
-
 </div>
 <div class="container h-full mx-auto flex justify-center items-center">
   <div class="space-y-10 text-center flex flex-col items-center">
