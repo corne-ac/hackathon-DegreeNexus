@@ -1,15 +1,43 @@
-import { PrismaClient } from '@prisma/client';
 import type { PageServerLoad } from './$types';
 
-const prisma = new PrismaClient();
+import { env } from '$env/dynamic/private';
+import { PrismaClient } from '@prisma/client/edge';
+import type { Actions } from './$types';
+
+let prisma = new PrismaClient({
+	datasourceUrl: env.DATABASE_URL
+});
 
 async function getRecord() {
-	const record = await prisma.user.findFirst();
-	return record;
+	return await prisma.degree.findMany();
 }
 
 export const load: PageServerLoad = async () => {
-	const a = await getRecord();
-	console.log(a);
-	return { rows: a };
+	try {
+		const r = await getRecord();
+		return { record: r, error: null }; // Indicate success
+	} catch (e: any) {
+		return {
+			record: null,
+			error: {
+				name: e.name,
+				message: e.message,
+				stack: e.stack
+			}
+		};
+	}
+};
+
+// Saves the theme when the user clicks the theme button. A cookie will be returned to the client with the data. The cookie will be used to set the theme on the client.
+// A cookie is used as it will be loaded before the page is rendered. This prevents the page from rendering with the default theme and then switching to the selected theme.
+
+export const actions: Actions = {
+	// This action is called when the user clicks the theme button
+	setTheme: async ({ cookies, request }) => {
+		const formData = await request.formData();
+		const theme = formData.get('theme')?.toString() ?? 'skeleton';
+		// Sets the selected theme to the cookie
+		cookies.set('theme', theme, { path: '/' });
+		return { theme };
+	}
 };

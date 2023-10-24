@@ -1,0 +1,57 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+generator client {
+  provider = "prisma-client-js"
+  // output   = "./"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Degree {
+  id           String   @id @default(uuid())
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  title        String   @db.VarChar(50)
+  description  String?  @db.VarChar(255)
+  requirements String?  @db.VarChar(255)
+  link         String?  @db.VarChar(255)
+  tags         Tag[]
+  userId       Int?
+}
+
+model Tag {
+  id       String  @id @default(uuid())
+  name     String  @db.VarChar(50)
+  degree   Degree? @relation(fields: [degreeId], references: [id])
+  degreeId String
+}
+
+model University {
+  id          String   @id @default(uuid())
+  name        String   @db.VarChar(50)
+  link        String?  @db.VarChar(255)
+  description String?  @db.VarChar(255)
+  Campas      Campas[]
+}
+
+model Campas {
+  id           String      @id @default(uuid())
+  title        String      @db.VarChar(50)
+  link         String?     @db.VarChar(255)
+  university   University? @relation(fields: [universityId], references: [id])
+  universityId String
+}
+
+// model User {
+//   id        Int      @id @default(autoincrement())
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//   email     String   @unique
+//   name      String?
+//   password  String
+//   Degree    Degree[]
+// }
