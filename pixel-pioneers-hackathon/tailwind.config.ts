@@ -1,9 +1,9 @@
 import { join } from 'path';
 import type { Config } from 'tailwindcss';
-// @ts-ignore
+/*// @ts-ignore
 import forms from '@tailwindcss/forms';
 // @ts-ignore
-import typography from '@tailwindcss/typography';
+import typography from '@tailwindcss/typography';*/
 import { skeleton } from '@skeletonlabs/tw-plugin';
 
 export default {
@@ -16,8 +16,7 @@ export default {
 		extend: {}
 	},
 	plugins: [
-		forms,
-		typography,
+
 		skeleton({
 			themes: {
 				preset: [
