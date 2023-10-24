@@ -6,10 +6,19 @@
   import { CodeBlock } from "@skeletonlabs/skeleton";
   import "highlight.js/styles/github-dark.css";
   import { storeHighlightJs } from "@skeletonlabs/skeleton";
+  import { storeTheme } from "$lib/stores/stores";
+  import { browser } from "$app/environment";
 
   hljs.registerLanguage("json", json);
   storeHighlightJs.set(hljs);
   export let data: PageData;
+
+  storeTheme.subscribe(setBodyThemeAttribute);
+
+  function setBodyThemeAttribute(): void {
+    if (!browser) return;
+    document.body.setAttribute("data-theme", $storeTheme);
+  }
 </script>
 
 <!--<div class="w-full max-w-4xl mx-auto space-y-10">-->

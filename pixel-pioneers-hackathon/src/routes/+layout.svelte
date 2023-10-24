@@ -73,12 +73,7 @@
           GitHub
         </a>
         <div>
-          <!-- trigger -->
-          <!--          <button class="btn hover:variant-soft-primary"-->
-          <!--                  use:popup={{ event: 'click', target: 'theme', closeQuery: 'a[href]' }}>-->
-          <button class="btn variant-filled" use:popup={popupTheme}>Show Popup</button>
-
-
+          <button class="btn variant-filled" use:popup={popupTheme}>Themes</button>
           <div class="card p-4 w-60 shadow-xl" data-popup="popupTheme">
             <div class="arrow bg-surface-100-800-token" />
             <div class="space-y-4">
