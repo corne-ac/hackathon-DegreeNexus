@@ -11,7 +11,7 @@
         <div class="card bg-inital card-hover overflow-hidden ">
             <!-- top image -->
             <header>
-                <img src="/degree_hat.jpg" class="bg-black/50 w-full aspect-[20/9] " alt="Degree Img" />
+                <img src="/degree_hat.jpg" class="bg-black/50 w-full aspect-[18/10] " alt="Degree Img" />
                 <!-- TODO: Fix aspect ratio if images, currently warps to fit aspect -->
             </header>
             <!-- content of card -->
