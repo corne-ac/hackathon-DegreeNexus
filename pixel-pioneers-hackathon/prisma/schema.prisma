@@ -46,6 +46,18 @@ model Campas {
   universityId String
 }
 
+model User {
+  id        String    @id @unique @default(uuid())
+  name      String
+  email     String    @unique
+  password  String
+  role      String?   @default("user")
+  photo     String?   @default("default.png")
+  verified  Boolean?  @default(false)
+  createdAt DateTime? @default(now())
+  updatedAt DateTime? @updatedAt
+}
+
 // model User {
 //   id        Int      @id @default(autoincrement())
 //   createdAt DateTime @default(now())

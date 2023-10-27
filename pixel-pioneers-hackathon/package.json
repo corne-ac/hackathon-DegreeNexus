@@ -47,6 +47,7 @@
     "@prisma/client": "^5.4.2",
     "@prisma/extension-accelerate": "^0.6.2",
     "highlight.js": "^11.9.0",
+    "jose": "^5.0.1",
     "wrangler": "^3.14.0",
     "zod": "^3.22.4"
   }

@@ -30,4 +30,16 @@ export const RegisterUserSchema = z
 		path: ['passwordConfirm'],
 		message: 'Passwords do not match'
 	});
-export type RegisterUserInput = z.infer<typeof RegisterUserSchema>;
+
+export const LoginUserSchema = z.object({
+	name: z.string({
+		required_error: 'Name is required'
+	}),
+	password: z
+		.string({
+			required_error: 'Password is required'
+		})
+		.min(1, 'password is required')
+		.min(8, 'Password must be more than 8 characters')
+		.max(32, 'Password must be less than 32 characters')
+});
