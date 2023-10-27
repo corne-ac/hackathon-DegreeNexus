@@ -45,8 +45,6 @@
     "@floating-ui/dom": "1.5.3",
     "@prisma/client": "^5.4.2",
     "@prisma/extension-accelerate": "^0.6.2",
-    "@sentry/node": "^7.74.1",
-    "argon2": "^0.31.1",
     "bcrypt": "^5.1.1",
     "highlight.js": "^11.9.0",
     "wrangler": "^3.14.0",
