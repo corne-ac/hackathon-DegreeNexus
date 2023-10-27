@@ -3,8 +3,6 @@ import { RegisterUserSchema } from '$lib/validations/user.schema';
 import { env } from '$env/dynamic/private';
 import { PrismaClient } from '@prisma/client/edge';
 
-import * as argon2 from 'argon2';
-
 let prisma = new PrismaClient({
 	datasourceUrl: env.DATABASE_URL
 });
@@ -29,8 +27,8 @@ export const actions: Actions = {
 		let data = validationResult.data;
 
 		// Validation passed, add the user to db and get a token.
-		let passwordHash = await argon2.hash(data.password);
+		// let passwordHash = await argon2.hash(data.password);
 
-		console.log(passwordHash);
+		// console.log(passwordHash);
 	}
 };
