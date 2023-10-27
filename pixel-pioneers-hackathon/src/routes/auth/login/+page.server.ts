@@ -1,7 +1,8 @@
 import type { Actions } from '@sveltejs/kit';
 import { env } from '$env/dynamic/private';
 import { PrismaClient } from '@prisma/client/edge';
-import * as bcrypt from 'bcrypt';
+// @ts-ignore
+import * as bcrypt from 'bcryptjs';
 
 const saltRounds = 10;
 let prisma = new PrismaClient({
@@ -26,11 +27,11 @@ export const actions: Actions = {
 
 		// let data = validationResult.data;
 
-		bcrypt.genSalt(saltRounds, (err, salt) => {
+		bcrypt.genSalt(saltRounds, (err: any, salt: any) => {
 			if (err) {
 				console.error('Error generating salt:', err);
 			} else {
-				bcrypt.hash(formData.password.toString(), salt, (err, hash) => {
+				bcrypt.hash(formData.password.toString(), salt, (err: any, hash: any) => {
 					if (err) {
 						console.error('Error hashing password:', err);
 					} else {
