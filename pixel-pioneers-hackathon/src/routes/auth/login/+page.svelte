@@ -20,11 +20,11 @@
       </header>
       <section class="p-4">
         <label class="label">
-          <span>Name</span>
-          <input class="input" type="text" name="name" placeholder="Name..." value={form?.data?.name??''} />
-          {#if form?.errors?.name}
+          <span>Email</span>
+          <input class="input" type="text" name="email" placeholder="Email..." value={form?.data?.email??''} />
+          {#if form?.errors?.email}
             <span class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
-             { form?.errors?.name[0]}
+             { form?.errors?.email[0]}
             </span>
           {/if}
         </label>

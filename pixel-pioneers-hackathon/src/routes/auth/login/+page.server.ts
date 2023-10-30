@@ -1,13 +1,9 @@
 import type { Actions } from '@sveltejs/kit';
-import { env } from '$env/dynamic/private';
-import { PrismaClient } from '@prisma/client/edge';
-// @ts-ignore
 import * as bcrypt from 'bcryptjs';
 import { LoginUserSchema } from '$lib/validations/user.schema';
-
-let prisma = new PrismaClient({
-	datasourceUrl: env.DATABASE_URL
-});
+import { signJWT } from '$lib/server/token';
+import { JWT_EXPIRES_IN } from '$env/static/private';
+import { db } from '$lib/server/prisma';
 
 export const actions: Actions = {
 	// This action is called when the user clicks the theme button
@@ -23,7 +19,10 @@ export const actions: Actions = {
 			return { errors: messages, data: formObj };
 		}
 		let formData = validationResult.data;
-		const user = await prisma.user.findUnique({ where: { email: formData.name } });
+
+		// Get the user from the db.
+		const user = await db.user.findUnique({ where: { email: formData.email } });
+
 		if (!user) {
 			return { errors: { password: ['Username or Password is incorrect'] }, data: formObj };
 		}
@@ -32,29 +31,21 @@ export const actions: Actions = {
 			return { errors: { password: ['Username or Password is incorrect'] }, data: formObj };
 		}
 
+		console.log('User:', user);
 
-		// Get the user from the db.
+		// Here will generate the JWT token and send it back to the client.
+		const token = await signJWT({ sub: user.id }, { exp: `${JWT_EXPIRES_IN}m` });
+		const tokenMaxAge = parseInt(JWT_EXPIRES_IN) * 60;
 
-		// Check the password.
-		// let passwordsMatch = await bcrypt.compare(formData.password, hashedPassword);
-		// console.log(passwordsMatch);
+		const cookieOptions = {
+			httpOnly: true,
+			path: '/api',
+			secure: false,
+			maxAge: tokenMaxAge
+		};
 
-		// let data = validationResult.data;
+		console.log('Token:', token);
 
-		/*		bcrypt.genSalt(saltRounds, (err: any, salt: any) => {
-          if (err) {
-            console.error('Error generating salt:', err);
-          } else {
-            bcrypt.hash(formObj.password.toString(), salt, (err: any, hash: any) => {
-              if (err) {
-                console.error('Error hashing password:', err);
-              } else {
-                console.log('Hashed Password:', hash);
-              }
-            });
-          }
-        });*/
-
-		// Validation passed, add the user to db and get a token.
+		cookies.set('token', token, cookieOptions);
 	}
 };
