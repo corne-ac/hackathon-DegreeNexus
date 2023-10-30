@@ -1,14 +1,8 @@
 import type { Actions, PageServerLoad } from './$types';
-
-import { env } from '$env/dynamic/private';
-import { PrismaClient } from '@prisma/client/edge';
-
-let prisma = new PrismaClient({
-	datasourceUrl: env.DATABASE_URL
-});
+import { db } from '$lib/server/prisma';
 
 async function getRecord() {
-	return await prisma.degree.findMany();
+	return await db.degree.findMany();
 }
 
 export const load: PageServerLoad = async () => {

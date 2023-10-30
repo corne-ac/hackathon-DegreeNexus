@@ -14,3 +14,20 @@ export const handle: Handle = async ({ event, resolve }) => {
 		transformPageChunk: ({ html }) => html.replace('data-theme="wintry"', `data-theme="${theme}"`)
 	});
 };
+
+export const authHandle: Handle = async ({ event, resolve }) => {
+	const { url, locals, request, cookies } = event;
+
+	let authToken: string | undefined;
+	if (cookies.get('token')) {
+		authToken = cookies.get('token');
+	} else if (request.headers.get('Authorization')?.startsWith('Bearer ')) {
+		authToken = request.headers.get('Authorization')?.substring(7);
+	}
+
+	locals.user = null;
+
+	console.log('Auth Token:', authToken);
+
+	return resolve(event);
+};

@@ -1,13 +1,8 @@
 import type { Actions } from '@sveltejs/kit';
 import { RegisterUserSchema } from '$lib/validations/user.schema';
-import { env } from '$env/dynamic/private';
-import { PrismaClient } from '@prisma/client/edge';
 // @ts-ignore
 import * as bcrypt from 'bcryptjs';
-
-let prisma = new PrismaClient({
-	datasourceUrl: env.DATABASE_URL
-});
+import { db } from '$lib/server/prisma';
 
 export const actions: Actions = {
 	// This action is called when the user clicks the theme button
@@ -29,14 +24,13 @@ export const actions: Actions = {
 		let formData = validationResult.data;
 		const hashedPassword = await bcrypt.hash(formData.password, 8);
 
-		const user = await prisma.user.create({
+		const user = await db.user.create({
 			data: {
 				name: formData.name,
 				email: formData.email,
 				password: hashedPassword
 			}
 		});
-
 
 		// Validation passed, add the user to db and get a token.
 		// let passwordHash = await argon2.hash(data.password);
