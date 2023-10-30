@@ -1,4 +1,5 @@
 import { json, type RequestHandler } from '@sveltejs/kit';
+
 export const POST: RequestHandler = ({ cookies, locals }) => {
 	console.log(locals.user);
 	locals.user = null;

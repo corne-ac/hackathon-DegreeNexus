@@ -1,10 +1,10 @@
 import { json, type RequestHandler } from '@sveltejs/kit';
 
-export const GET: RequestHandler = ({ locals }) => {
-	console.log(locals);
+export const GET: RequestHandler = (event) => {
+	console.log(event.locals);
 
 	try {
-		const user = locals.user;
+		const user = event.locals.user;
 
 		if (!user) {
 			return json(

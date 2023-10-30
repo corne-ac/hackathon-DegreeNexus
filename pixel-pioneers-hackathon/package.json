@@ -3,15 +3,17 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "dev": "npx prisma generate && vite dev",
+    "dev": "npx prisma generate --no-engine && vite dev",
     "dev_open": "npm run dev -- --open",
     "build": "npx prisma generate --no-engine && vite build",
-    "preview": "npx prisma generate && vite preview",
+    "preview": "npx prisma generate --no-engine && vite preview",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
     "lint": "prettier --plugin-search-dir . --check . && eslint .",
     "format": "prettier --plugin-search-dir . --write .",
-    "wrangler": "npx wrangler pages dev -- npm run dev\n"
+    "wrangler": "npx wrangler pages dev -- npm run dev\n",
+    "ps": "npx prisma studio -- --open",
+    "psu": "npx prisma migrate dev --create-only"
   },
   "devDependencies": {
     "@skeletonlabs/skeleton": "2.3.0",

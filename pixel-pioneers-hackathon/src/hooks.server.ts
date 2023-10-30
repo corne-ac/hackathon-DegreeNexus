@@ -1,5 +1,4 @@
 import type { Handle } from '@sveltejs/kit';
-
 export const handle: Handle = async ({ event, resolve }) => {
 	let theme = '';
 	const cookieTheme = event.cookies.get('theme');
