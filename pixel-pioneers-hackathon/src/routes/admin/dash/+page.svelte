@@ -43,6 +43,19 @@
     event.stopPropagation();
   }
 
+  function toggleClass(event: MouseEvent) {
+    const th = event.target as HTMLTableElement;
+
+    // Check if the 'table-sort-asc' class is present and toggle it
+    if (th.classList.contains("table-sort-asc")) {
+      th.classList.remove("table-sort-asc");
+      // someData = "Data Updated on Click";
+    } else {
+      // Set the 'table-sort-asc' class
+      th.classList.add("table-sort-asc");
+      // someData = "Data Updated on Click (Alternate)";
+    }
+  }
 </script>
 <h1 class="h1">
   <span
@@ -64,22 +77,22 @@
                 </th>
               </tr>
       -->
-<!--        <tr>
-          <td colspan="3">
-            <select  class="select variant-form-material" />
-          </td>
+        <!--        <tr>
+                  <td colspan="3">
+                    <select  class="select variant-form-material" />
+                  </td>
 
-          <td colspan="3">
-            <div class="input-group input-group-divider grid-cols-[auto_1fr_auto]">
-              <div class="input-group-shim">(icon)</div>
-              <input type="search" placeholder="Search..." />
-              <button class="variant-filled-secondary">Submit</button>
-            </div>
-          </td>
-        </tr>-->
+                  <td colspan="3">
+                    <div class="input-group input-group-divider grid-cols-[auto_1fr_auto]">
+                      <div class="input-group-shim">(icon)</div>
+                      <input type="search" placeholder="Search..." />
+                      <button class="variant-filled-secondary">Submit</button>
+                    </div>
+                  </td>
+                </tr>-->
         <tr>
           {#each tableSimple.head as heading }
-            <th>
+            <th on:click={toggleClass}>
               {@html heading}
             </th>
           {/each}
