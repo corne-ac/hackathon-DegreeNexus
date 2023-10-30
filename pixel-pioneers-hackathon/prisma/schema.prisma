@@ -35,10 +35,10 @@ model University {
   name        String   @db.VarChar(50)
   link        String?  @db.VarChar(255)
   description String?  @db.VarChar(255)
-  Campas      Campas[]
+  Campus      Campus[]
 }
 
-model Campas {
+model Campus {
   id           String      @id @default(uuid())
   title        String      @db.VarChar(50)
   link         String?     @db.VarChar(255)

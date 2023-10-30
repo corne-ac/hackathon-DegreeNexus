@@ -57,28 +57,5 @@
         </a>
 
     {/each}
-    <div class="card bg-inital card-hover overflow-hidden ">
-        <!-- top image -->
-        <header>
-            <img src="/favicon.png" class="bg-black/50 w-full aspect-[21/9]" alt="Degree Img" />
-        </header>
-        <!-- content of card -->
-        <div class="p-4 space-y-4">
-            <h3>degree Title</h3>
-            <article>
-                <p>
-                    This will be the entire body of the card. it will be filled with a description, or can contain info on requirements. dont know yet.
-                </p>                
-            </article>
-        </div>
-        <!-- bottom part, details -->
-        <hr class="opacity-50" />
-        <footer class="p-4 flex justify-start items-center space-x-4">
-            <div class="flex-auto flex justify-between items-center">
-                <h6 class="font-bold" data-toc-ignore>Uni Name</h6>
-                <small>Degree lvl</small>
-            </div>
-        </footer>
-    </div>
     
 </div>
