@@ -49,11 +49,15 @@
     // Check if the 'table-sort-asc' class is present and toggle it
     if (th.classList.contains("table-sort-asc")) {
       th.classList.remove("table-sort-asc");
-      // someData = "Data Updated on Click";
-    } else {
+      th.classList.add("table-sort-dsc");
+    } else if (th.classList.contains("table-sort-dsc")) {
       // Set the 'table-sort-asc' class
-      th.classList.add("table-sort-asc");
+      th.classList.remove("table-sort-dsc");
+
       // someData = "Data Updated on Click (Alternate)";
+    } else {
+      th.classList.add("table-sort-asc");
+      th.classList.remove("table-sort-dsc");
     }
   }
 </script>
