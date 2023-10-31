@@ -3,20 +3,14 @@ import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async () => {
 	try {
-		const users = await db.user.findMany({
+		const degrees = await db.degree.findMany({
 			select: {
-				id: false,
-				email: true,
-				name: true,
-				role: true,
-				createdAt: true,
-				updatedAt: true
+				...db.degree,
+				favoritedBy: false
 			},
 			take: 10
 		});
-		console.log(users);
-
-		return { users: users };
+		return { degrees: degrees };
 	} catch (e: any) {
 		return {
 			error: {

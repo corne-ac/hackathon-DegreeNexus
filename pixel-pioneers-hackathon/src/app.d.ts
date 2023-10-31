@@ -4,9 +4,15 @@
 
 
 declare namespace App {
-	type User = import('@prisma/client/edge').User;
+	// type User = import('@prisma/client/edge').User;
 	interface Locals {
-		user: User | null;
+		// user: User | null;
+		user: {
+			name: string;
+			id: string;
+			photo: string;
+		} | null;
+
 	}
 
 	// interface PageData {}
