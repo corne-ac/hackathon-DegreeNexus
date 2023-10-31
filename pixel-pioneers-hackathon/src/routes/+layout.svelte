@@ -40,7 +40,7 @@
 <AppShell shadow="shadow-2xl" slotTrail="!space-x-2">
   <svelte:fragment slot="header">
     <!-- App Bar -->
-    <AppBar gridColumns="grid-cols-3" slotDefault="place-self-center" slotTrail="place-content-end">
+    <AppBar padding="p-2" gridColumns="grid-cols-3" slotDefault="place-self-center" slotTrail="place-content-end">
       <svelte:fragment slot="lead">
         <strong class="text-xl uppercase mx-4"><a href="/home">Pixel Pioneers</a></strong>
       </svelte:fragment>
@@ -92,7 +92,7 @@
           </span>
           </a>
 
-          <a href="/"
+          <a href="/protected/favourites"
              class="relative flex items-center justify-center h-12 w-12 mt-2 mb-2 mx-2 variant-soft-primary hover:bg-opacity-100 text-primary-500 hover:variant-filled-primary hover:text-white rounded-3xl hover:rounded-xl transition-all duration-200 ease-linear group">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
               <path fill-rule="evenodd"
@@ -116,47 +116,47 @@
               class="absolute w-auto p-2 m-2 min-w-max top-12 rounded-md shadow-md variant-filled-primary text-sm font-bold transition-all duration-100 scale-0 origin-top group-hover:scale-100">
             Theme
           </span>
-            <div class="card p-4 w-60 shadow-xl text-primary-500" data-popup="popupTheme">
-              <div class="arrow bg-surface-100-800-token" />
-              <div class="space-y-4">
-                <section class="flex justify-between items-center">
-                  <h6 class="h6">Mode</h6>
-                  <LightSwitch />
-                </section>
-                <hr />
-                <nav class="list-nav p-4 -m-4 max-h-64 lg:max-h-[500px] overflow-y-auto">
-                  <form action="/?/setTheme" method="POST" use:enhance={setTheme}>
-                    <ul>
-                      {#each themes as { icon, name, type }}
-                        <li>
-                          <button
-                            class="option w-full h-full"
-                            type="submit"
-                            name="theme"
-                            value={type}
-                            class:bg-primary-active-token={$storeTheme === type}
-                          >
-                            <span>{icon}</span>
-                            <span class="flex-auto text-left">{name}</span>
-                          </button>
-                        </li>
-                      {/each}
-                    </ul>
-                  </form>
-                </nav>
-              </div>
-            </div>
-          </button>
-          </div>
-        </div>
-      <svelte:fragment slot="trail">
 
-        <div class="flex title-font font-medium items-center mb-4 mx-4">
+          </button>
+        </div>
+      </div>
+      <div class="card p-4 w-60 shadow-xl text-primary-500" data-popup="popupTheme">
+        <div class="arrow bg-surface-100-800-token" />
+        <div class="space-y-4">
+          <section class="flex justify-between items-center">
+            <h6 class="h6">Mode</h6>
+            <LightSwitch />
+          </section>
+          <hr />
+          <nav class="list-nav p-4 -m-4 max-h-64 lg:max-h-[500px] overflow-y-auto">
+            <form action="/?/setTheme" method="POST" use:enhance={setTheme}>
+              <ul>
+                {#each themes as { icon, name, type }}
+                  <li>
+                    <button
+                      class="option w-full h-full"
+                      type="submit"
+                      name="theme"
+                      value={type}
+                      class:bg-primary-active-token={$storeTheme === type}
+                    >
+                      <span>{icon}</span>
+                      <span class="flex-auto text-left">{name}</span>
+                    </button>
+                  </li>
+                {/each}
+              </ul>
+            </form>
+          </nav>
+        </div>
+      </div>
+
+      <svelte:fragment slot="trail">
+        <div class="flex title-font font-medium items-center mx-4">
 
           <!-- Use if statement for logged in check -->
           {#if false}
             <span class="mr-3 text-xl">Current User</span>
-
           {:else if true}
             <p class="mr-3"><a href="/auth/login" class="text-primary-600 hover:underline dark:text-primary-500">Login</a> or <a
               href="/auth/register/" class="text-primary-600 hover:underline dark:text-primary-500">Register</a> to get

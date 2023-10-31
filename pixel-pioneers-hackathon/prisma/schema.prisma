@@ -11,18 +11,6 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
-model Degree {
-  id           String   @id @default(uuid())
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
-  title        String   @db.VarChar(50)
-  description  String?  @db.VarChar(255)
-  requirements String?  @db.VarChar(255)
-  link         String?  @db.VarChar(255)
-  tags         Tag[]
-  userId       Int?
-}
-
 model Tag {
   id       String  @id @default(uuid())
   name     String  @db.VarChar(50)
@@ -46,16 +34,59 @@ model Campus {
   universityId String
 }
 
+// model User {
+//   id              String    @id @unique @default(uuid())
+//   name            String
+//   email           String    @unique
+//   password        String
+//   role            String?   @default("user")
+//   photo           String?   @default("default.png")
+//   verified        Boolean?  @default(false)
+//   createdAt       DateTime? @default(now())
+//   updatedAt       DateTime? @updatedAt
+//   favoriteDegrees Degree[]  @relation("FavoriteDegrees", references: [id])
+// }
+//
+// model Degree {
+//   id           String   @id @default(uuid())
+//   createdAt    DateTime @default(now())
+//   updatedAt    DateTime @updatedAt
+//   title        String   @db.VarChar(50)
+//   description  String?  @db.VarChar(255)
+//   requirements String?  @db.VarChar(255)
+//   link         String?  @db.VarChar(255)
+//   tags         Tag[]
+//   userId       Int?
+//   favoritedBy  User[]   @relation("FavoriteDegrees", references: [id])
+// }
+
+model Degree {
+  id           String   @id @default(uuid())
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  title        String   @db.VarChar(50)
+  description  String?  @db.VarChar(255)
+  requirements String?  @db.VarChar(255)
+  link         String?  @db.VarChar(255)
+  tags         Tag[]
+  favoritedBy  User[]   @relation("Favorites")
+
+  @@index([id])
+}
+
 model User {
-  id        String    @id @unique @default(uuid())
-  name      String
-  email     String    @unique
-  password  String
-  role      String?   @default("user")
-  photo     String?   @default("default.png")
-  verified  Boolean?  @default(false)
-  createdAt DateTime? @default(now())
-  updatedAt DateTime? @updatedAt
+  id              String    @id @unique @default(uuid())
+  name            String
+  email           String    @unique
+  password        String
+  role            String?   @default("user")
+  photo           String?   @default("default.png")
+  verified        Boolean?  @default(false)
+  createdAt       DateTime? @default(now())
+  updatedAt       DateTime? @updatedAt
+  favoriteDegrees Degree[]  @relation("Favorites")
+
+  @@index([id])
 }
 
 // model User {

@@ -35,12 +35,12 @@ export const actions: Actions = {
 
 		// Here will generate the JWT token and send it back to the client.
 		const token = await signJWT({ sub: user.id }, { exp: `${JWT_EXPIRES_IN}m` });
-		const tokenMaxAge = parseInt(JWT_EXPIRES_IN) * 60;
+		const tokenMaxAge = parseInt(JWT_EXPIRES_IN) * 60 * 24 * 7;
 
 		const cookieOptions = {
 			httpOnly: true,
-			path: '/api',
-			secure: false,
+			path: '/',
+			secure: process.env.SVELTE_ENV !== 'development',
 			maxAge: tokenMaxAge
 		};
 
