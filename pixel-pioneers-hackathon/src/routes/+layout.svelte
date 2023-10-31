@@ -45,8 +45,7 @@
         <strong class="text-xl uppercase mx-4"><a href="/home">Pixel Pioneers</a></strong>
       </svelte:fragment>
         <div class="relative hidden lg:block">
-          <div class="flex items-center space-x-4">
-          <!-- Navigation elements - Simple Symbols with hover descriptions? -->
+          <div class="flex items-center">
           <!-- TODO: maybe make it its own css tag -->
           <a href="/degrees"
              class="relative flex items-center justify-center h-12 w-12 mt-2 mb-2 mx-2 variant-soft-primary hover:bg-opacity-100 text-primary-500 hover:variant-filled-primary hover:text-white rounded-3xl hover:rounded-xl transition-all duration-200 ease-linear group">
@@ -151,39 +150,6 @@
           </div>
         </div>
       <svelte:fragment slot="trail">
-        <!-- <div>
-          <button class="btn variant-filled" use:popup={popupTheme}>Themes</button>
-          <div class="card p-4 w-60 shadow-xl" data-popup="popupTheme">
-            <div class="arrow bg-surface-100-800-token" />
-            <div class="space-y-4">
-              <section class="flex justify-between items-center">
-                <h6 class="h6">Mode</h6>
-                <LightSwitch />
-              </section>
-              <hr />
-              <nav class="list-nav p-4 -m-4 max-h-64 lg:max-h-[500px] overflow-y-auto">
-                <form action="/?/setTheme" method="POST" use:enhance={setTheme}>
-                  <ul>
-                    {#each themes as { icon, name, type }}
-                      <li>
-                        <button
-                          class="option w-full h-full"
-                          type="submit"
-                          name="theme"
-                          value={type}
-                          class:bg-primary-active-token={$storeTheme === type}
-                        >
-                          <span>{icon}</span>
-                          <span class="flex-auto text-left">{name}</span>
-                        </button>
-                      </li>
-                    {/each}
-                  </ul>
-                </form>
-              </nav>
-            </div>
-          </div>
-        </div> -->
 
         <div class="flex title-font font-medium items-center mb-4 mx-4">
 
@@ -192,8 +158,7 @@
             <span class="mr-3 text-xl">Current User</span>
 
           {:else if true}
-            <p class="mr-3"><a href="/auth/login"
-                               class="text-primary-600 hover:underline dark:text-primary-500">Login</a> or <a
+            <p class="mr-3"><a href="/auth/login" class="text-primary-600 hover:underline dark:text-primary-500">Login</a> or <a
               href="/auth/register/" class="text-primary-600 hover:underline dark:text-primary-500">Register</a> to get
               started!</p>
           {/if}
