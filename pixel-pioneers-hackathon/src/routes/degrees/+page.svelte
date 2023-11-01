@@ -1,7 +1,8 @@
 <script lang="ts">
   import Layout from "../+layout.svelte";
   import type { PageData } from "./$types";
-  import { Avatar } from "@skeletonlabs/skeleton";
+  import Fa from "svelte-fa/src/fa.svelte";
+  import { faGraduationCap } from "@fortawesome/free-solid-svg-icons";
 
   export let data: PageData;
 </script>
@@ -43,11 +44,9 @@
           </div>
 
           <span
-            class="text-gray-400 font-bold mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2">
-                    <small>Degree lvl</small>
-                </span>
-          <span class="text-gray-400 inline-flex items-center leading-none text-sm">
-                    <Avatar src="/favicon.png" width="w-8" />
+            class="text-gray-400 font-bold inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm py-1">
+            <Fa icon={faGraduationCap} size="lg" class="h-10 w-10"/>
+                    <small>{item.level}</small>
                 </span>
         </footer>
       </a>

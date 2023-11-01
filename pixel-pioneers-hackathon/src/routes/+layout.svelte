@@ -8,8 +8,15 @@
 	import { enhance } from '$app/forms';
 	import { arrow, autoUpdate, computePosition, flip, offset, shift } from '@floating-ui/dom';
 
-  import Fa from "svelte-fa/src/fa.svelte";
-    import { faGraduationCap, faBuildingColumns, faUser, faStar, faPen, faBars } from "@fortawesome/free-solid-svg-icons";
+	import Fa from 'svelte-fa/src/fa.svelte';
+	import {
+		faGraduationCap,
+		faBuildingColumns,
+		faUser,
+		faStar,
+		faPen,
+		faBars
+	} from '@fortawesome/free-solid-svg-icons';
 
 	storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
 
@@ -36,54 +43,53 @@
 		}
 	};
 
+	let value = 'hidden';
 
-  let value = "hidden";
-
-  function toggleMenu() {
-    if (value === "hidden")
-      value = "flex";
-    else
-      value = "hidden";
-  };
-
+	function toggleMenu() {
+		if (value === 'hidden') value = 'flex';
+		else value = 'hidden';
+	}
 </script>
 
 <!-- App Shell -->
 <AppShell shadow="shadow-2xl" slotTrail="!space-x-2">
 	<svelte:fragment slot="sidebarLeft">
-		<div class="card variant-soft p-1 {value} lg:hidden flex-col h-full overflow-hidden">
-			<a href="/degrees" class="flex flex-row group">
+
+		<!-- TODO: doesnt render ontop of everything... -->
+
+		<div class="card variant-gradient-primary-secondary p-1 {value} lg:hidden flex-col h-full absolute">
+			<a href="/degrees" class="flex flex-row group" on:click={toggleMenu}>
 				<div
 					class="relative items-center justify-left flex flex-row h-12 w-full py-5 pe-5 ps-3 mt-2 mb-2 mx-2 variant-soft-primary hover:bg-opacity-100 text-primary-500 hover:variant-filled-primary hover:text-white rounded-3xl hover:rounded-xl transition-all duration-200 ease-linear"
 				>
-          <Fa icon={faGraduationCap} size="lg" class="h-10 w-10"/>
+					<Fa icon={faGraduationCap} size="lg" class="h-10 w-10" />
 					<p class="font-bold mb-1">Degree</p>
 				</div>
 			</a>
 
-			<a href="/" class="flex flex-row group">
+			<a href="/" class="flex flex-row group" on:click={toggleMenu}>
 				<div
 					class="relative items-center justify-left flex flex-row h-12 w-full py-5 pe-5 ps-3 mt-2 mb-2 mx-2 variant-soft-primary hover:bg-opacity-100 text-primary-500 hover:variant-filled-primary hover:text-white rounded-3xl hover:rounded-xl transition-all duration-200 ease-linear"
 				>
-        <Fa icon={faBuildingColumns} size="lg" class="h-10 w-10"/>
+					<Fa icon={faBuildingColumns} size="lg" class="h-10 w-10" />
 					<p class="font-bold mb-1">Universities</p>
 				</div>
 			</a>
 
-			<a href="/Account/Details" class="flex flex-row group">
+			<a href="/Account/Details" class="flex flex-row group" on:click={toggleMenu}>
 				<div
 					class="relative items-center justify-left flex flex-row h-12 w-full py-5 pe-5 ps-3 mt-2 mb-2 mx-2 variant-soft-primary hover:bg-opacity-100 text-primary-500 hover:variant-filled-primary hover:text-white rounded-3xl hover:rounded-xl transition-all duration-200 ease-linear"
 				>
-        <Fa icon={faUser} size="lg" class="h-10 w-10"/>
+					<Fa icon={faUser} size="lg" class="h-10 w-10" />
 					<p class="font-bold mb-1">Account</p>
 				</div>
 			</a>
 
-			<a href="/" class="flex flex-row group">
+			<a href="/" class="flex flex-row group" on:click={toggleMenu}>
 				<div
 					class="relative items-center justify-left flex flex-row h-12 w-full py-5 pe-5 ps-3 mt-2 mb-2 mx-2 variant-soft-primary hover:bg-opacity-100 text-primary-500 hover:variant-filled-primary hover:text-white rounded-3xl hover:rounded-xl transition-all duration-200 ease-linear"
 				>
-        <Fa icon={faStar} size="lg" class="h-10 w-10"/>
+					<Fa icon={faStar} size="lg" class="h-10 w-10" />
 					<p class="font-bold mb-1">Favourites</p>
 				</div>
 			</a>
@@ -102,89 +108,80 @@
 				<strong class="text-xl uppercase mx-4"><a href="/home">Pixel Pioneers</a></strong>
 			</svelte:fragment>
 
-      <div class="relative">
-
-      
-			<!-- Heading knoppies -->
-			<div class="">
-				<div class="flex items-center">
-					<!-- TODO: maybe make it its own css tag -->
-					<a
-						href="/degrees"
-						class="relative hidden lg:flex items-center justify-center h-12 w-12 mt-2 mb-2 mx-2 variant-soft-primary hover:bg-opacity-100 text-primary-500 hover:variant-filled-primary hover:text-white rounded-3xl hover:rounded-xl transition-all duration-200 ease-linear group"
-					>
-          <Fa icon={faGraduationCap} size="lg" class="h-10 w-10"/>
-						<span
-							class="absolute w-auto p-2 m-2 min-w-max top-12 rounded-md shadow-md variant-filled-primary text-sm font-bold transition-all duration-100 scale-0 origin-top group-hover:scale-100"
+			<div class="relative">
+				<!-- Heading knoppies -->
+				<div class="relative">
+					<div class="flex items-center">
+						<!-- TODO: maybe make it its own css tag -->
+						<a
+							href="/degrees"
+							class="relative hidden lg:flex items-center justify-center h-12 w-12 mt-2 mb-2 mx-2 variant-soft-primary hover:bg-opacity-100 text-primary-500 hover:variant-filled-primary hover:text-white rounded-3xl hover:rounded-xl transition-all duration-200 ease-linear group"
 						>
-							Degrees
-						</span>
-					</a>
+							<Fa icon={faGraduationCap} size="lg" class="h-10 w-10" />
+							<span
+								class="absolute w-auto p-2 m-2 min-w-max top-12 rounded-md shadow-md variant-filled-primary text-sm font-bold transition-all duration-100 scale-0 origin-top group-hover:scale-100"
+							>
+								Degrees
+							</span>
+						</a>
 
-					<a
-						href="/"
-						class="relative hidden lg:flex items-center justify-center h-12 w-12 mt-2 mb-2 mx-2 variant-soft-primary hover:bg-opacity-100 text-primary-500 hover:variant-filled-primary hover:text-white rounded-3xl hover:rounded-xl transition-all duration-200 ease-linear group"
-					>
-          <Fa icon={faBuildingColumns} size="lg" class="h-10 w-10"/>
-						<span
-							class="absolute w-auto p-2 m-2 min-w-max top-12 rounded-md shadow-md variant-filled-primary text-sm font-bold transition-all duration-100 scale-0 origin-top group-hover:scale-100"
+						<a
+							href="/"
+							class="relative hidden lg:flex items-center justify-center h-12 w-12 mt-2 mb-2 mx-2 variant-soft-primary hover:bg-opacity-100 text-primary-500 hover:variant-filled-primary hover:text-white rounded-3xl hover:rounded-xl transition-all duration-200 ease-linear group"
 						>
-							Universities
-						</span>
-					</a>
+							<Fa icon={faBuildingColumns} size="lg" class="h-10 w-10" />
+							<span
+								class="absolute w-auto p-2 m-2 min-w-max top-12 rounded-md shadow-md variant-filled-primary text-sm font-bold transition-all duration-100 scale-0 origin-top group-hover:scale-100"
+							>
+								Universities
+							</span>
+						</a>
 
-					<a
-						href="/"
-						class="relative hidden lg:flex items-center justify-center h-12 w-12 mt-2 mb-2 mx-2 variant-soft-primary hover:bg-opacity-100 text-primary-500 hover:variant-filled-primary hover:text-white rounded-3xl hover:rounded-xl transition-all duration-200 ease-linear group"
-					>
-          <Fa icon={faUser} size="lg" class="h-10 w-10"/>
-						<span
-							class="absolute w-auto p-2 m-2 min-w-max top-12 rounded-md shadow-md variant-filled-primary text-sm font-bold transition-all duration-100 scale-0 origin-top group-hover:scale-100"
+						<a
+							href="/"
+							class="relative hidden lg:flex items-center justify-center h-12 w-12 mt-2 mb-2 mx-2 variant-soft-primary hover:bg-opacity-100 text-primary-500 hover:variant-filled-primary hover:text-white rounded-3xl hover:rounded-xl transition-all duration-200 ease-linear group"
 						>
-							Account
-						</span>
-					</a>
+							<Fa icon={faUser} size="lg" class="h-10 w-10" />
+							<span
+								class="absolute w-auto p-2 m-2 min-w-max top-12 rounded-md shadow-md variant-filled-primary text-sm font-bold transition-all duration-100 scale-0 origin-top group-hover:scale-100"
+							>
+								Account
+							</span>
+						</a>
 
-					<a
-						href="/protected/favourites"
-						class="relative hidden lg:flex items-center justify-center h-12 w-12 mt-2 mb-2 mx-2 variant-soft-primary hover:bg-opacity-100 text-primary-500 hover:variant-filled-primary hover:text-white rounded-3xl hover:rounded-xl transition-all duration-200 ease-linear group"
-					>
-          <Fa icon={faStar} size="lg" class="h-10 w-10"/>
-						<span
-							class="absolute w-auto p-2 m-2 min-w-max top-12 rounded-md shadow-md variant-filled-primary text-sm font-bold transition-all duration-100 scale-0 origin-top group-hover:scale-100"
+						<a
+							href="/protected/favourites"
+							class="relative hidden lg:flex items-center justify-center h-12 w-12 mt-2 mb-2 mx-2 variant-soft-primary hover:bg-opacity-100 text-primary-500 hover:variant-filled-primary hover:text-white rounded-3xl hover:rounded-xl transition-all duration-200 ease-linear group"
 						>
-							Favourites
-						</span>
-					</a>
+							<Fa icon={faStar} size="lg" class="h-10 w-10" />
+							<span
+								class="absolute w-auto p-2 m-2 min-w-max top-12 rounded-md shadow-md variant-filled-primary text-sm font-bold transition-all duration-100 scale-0 origin-top group-hover:scale-100"
+							>
+								Favourites
+							</span>
+						</a>
 
-          <button
-              on:click={toggleMenu}
-              class="relative flex items-center lg:hidden justify-center h-12 w-12 mt-2 mb-2 mx-2 variant-soft-primary hover:bg-opacity-100 text-primary-500 hover:variant-filled-primary hover:text-white rounded-3xl hover:rounded-xl transition-all duration-200 ease-linear group"
-            >
-            <Fa icon={faBars} size="lg" class="h-10 w-10"/>
-              
-            </button>
+						<button
+							on:click={toggleMenu}
+							class="relative flex items-center lg:hidden justify-center h-12 w-12 mt-2 mb-2 mx-2 variant-soft-primary hover:bg-opacity-100 text-primary-500 hover:variant-filled-primary hover:text-white rounded-3xl hover:rounded-xl transition-all duration-200 ease-linear group"
+						>
+							<Fa icon={faBars} size="lg" class="h-10 w-10" />
+						</button>
 
-
-          <button
-              use:popup={popupTheme}
-              class="relative flex items-center justify-center h-12 w-12 mt-2 mb-2 mx-2 variant-soft-primary hover:bg-opacity-100 text-primary-500 hover:variant-filled-primary hover:text-white rounded-3xl hover:rounded-xl transition-all duration-200 ease-linear group"
-            >
-            <Fa icon={faPen} size="lg" class="h-10 w-10"/>
-              <span
-                class="absolute w-auto p-2 m-2 min-w-max top-12 rounded-md shadow-md variant-filled-primary text-sm font-bold transition-all duration-100 scale-0 origin-top group-hover:scale-100"
-              >
-                Theme
-              </span>
-            </button>
+						<button
+							use:popup={popupTheme}
+							class="relative flex items-center justify-center h-12 w-12 mt-2 mb-2 mx-2 variant-soft-primary hover:bg-opacity-100 text-primary-500 hover:variant-filled-primary hover:text-white rounded-3xl hover:rounded-xl transition-all duration-200 ease-linear group"
+						>
+							<Fa icon={faPen} size="lg" class="h-10 w-10" />
+							<span
+								class="absolute w-auto p-2 m-2 min-w-max top-12 rounded-md shadow-md variant-filled-primary text-sm font-bold transition-all duration-100 scale-0 origin-top group-hover:scale-100"
+							>
+								Theme
+							</span>
+						</button>
+					</div>
 				</div>
-          
-				
 			</div>
-
-      
-
-      </div>
 
 			<div class="card p-4 w-60 shadow-xl text-primary-500" data-popup="popupTheme">
 				<div class="arrow bg-surface-100-800-token" />
@@ -220,9 +217,25 @@
 			<svelte:fragment slot="trail">
 				<div class="flex title-font font-medium items-center mx-4">
 					<!-- Use if statement for logged in check -->
+					
+					<!-- basically the button-avatar div displays when the screen is too small, to display better on mobile -->
+					<!-- The text on mobile drew over elements. From here, button can nnavigate to /account/details when logged in -->
+					<!-- when not logged in, should navigate to login/register. Should also show some symbol to better portray purpose when logged out -->
+
+					<div class="lg:hidden flex items-center overflow-hidden">
+						<a href="/account/details">
+							<Avatar
+							border="border-4 border-surface-300-600-token hover:!border-primary-500"
+							cursor="cursor-pointer"
+							/>
+						</a>
+						
+					</div>
+
 					{#if false}
 						<span class="mr-3 text-xl">Current User</span>
 					{:else if true}
+					<div class="hidden sm:hidden lg:flex overflow-hidden items-center">
 						<p class="mr-3">
 							<a href="/auth/login" class="text-primary-600 hover:underline dark:text-primary-500"
 								>Login</a
@@ -233,12 +246,15 @@
 								class="text-primary-600 hover:underline dark:text-primary-500">Register</a
 							> to get started!
 						</p>
+						<Avatar
+							border="border-4 border-surface-300-600-token hover:!border-primary-500"
+							cursor="cursor-pointer"
+						/>
+					</div>
+						
 					{/if}
 
-					<Avatar
-						border="border-4 border-surface-300-600-token hover:!border-primary-500"
-						cursor="cursor-pointer"
-					/>
+					
 
 					<!--      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
                   <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>

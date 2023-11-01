@@ -1,5 +1,11 @@
 import type { Actions } from '@sveltejs/kit';
 import { RegisterUserSchema } from '$lib/validations/user.schema';
+import { redirect } from '@sveltejs/kit';
+
+
+import { onMount } from 'svelte';
+
+
 // @ts-ignore
 import * as bcrypt from 'bcryptjs';
 import { db } from '$lib/server/prisma';
@@ -31,7 +37,15 @@ export const actions: Actions = {
 				password: hashedPassword
 			}
 		});
+		
+	
 
+		
+		
+		redirect(307, "/auth/login");
+	
+	
+		//navigate to /auth/logina
 		// Validation passed, add the user to db and get a token.
 		// let passwordHash = await argon2.hash(data.password);
 
