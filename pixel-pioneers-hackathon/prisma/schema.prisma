@@ -8,7 +8,7 @@ generator client {
 datasource db {
   provider  = "postgresql"
   url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
+  directUrl = env("DATABASE_URL")
 }
 
 model Tag {
@@ -16,6 +16,14 @@ model Tag {
   name     String  @db.VarChar(50)
   degree   Degree? @relation(fields: [degreeId], references: [id])
   degreeId String
+}
+
+model Link {
+  id       String  @id @default(uuid())
+  linktitle String @db.VarChar(255)
+  link     String  @db.VarChar(255)
+  Degree   Degree? @relation(fields: [degreeId], references: [id])
+  degreeId String?
 }
 
 model University {
@@ -67,7 +75,8 @@ model Degree {
   title        String   @db.VarChar(50)
   description  String?  @db.VarChar(255)
   requirements String?  @db.VarChar(255)
-  link         String?  @db.VarChar(255)
+  level        String?  @db.VarChar(255)
+  links        Link[]
   tags         Tag[]
   favoritedBy  User[]   @relation("Favorites")
 

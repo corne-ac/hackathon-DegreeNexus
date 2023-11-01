@@ -18,6 +18,8 @@ export const load: PageServerLoad = async () => {
 				stack: e.stack
 			}
 		};
+	} finally {
+		db.$disconnect();
 	}
 };
 

@@ -1,6 +1,11 @@
 <script lang="ts">
-    import type { PageData } from "./$types";
+	import { faDownLeftAndUpRightToCenter } from "@fortawesome/free-solid-svg-icons";
+import type { PageData } from "../details/$types";
     import { Avatar, CodeBlock, Ratings } from '@skeletonlabs/skeleton';    
+    import Fa from "svelte-fa/src/fa.svelte";
+    import { faGraduationCap, faBuildingColumns } from "@fortawesome/free-solid-svg-icons";
+
+    export let data: PageData;
 
     let value = { current: 3.5, max: 5 };
 </script>
@@ -8,7 +13,7 @@
 <div class="container justify-center items-center rounded-xl md:mx-auto variant-soft-primary my-10 p-3 mb-10">
     <!-- TODO: Wrap items on smaller screens -->
     <div class="flex md:flex-row flex-col justify-center justify-items-center">
-       <strong class=" uppercase mx-4 text-4xl pt-0 md:pt-20 md:pe-10 pe-0 basis-3/5 pb-5 md:pb-0" >IIE Bachelor of Computer and Information Sciences in Application Development</strong>
+       <strong class=" uppercase mx-4 text-4xl pt-0 md:pt-20 md:pe-10 pe-0 basis-3/5 pb-5 md:pb-0" >{data.degree.title}</strong>
         <img src="/degree_hat.jpg" class="bg-black/50 w-full h-full aspect-[18/10] rounded-lg basis-2/5" alt="Degree Img" /> 
     </div>
     
@@ -17,30 +22,17 @@
         <!-- Main Text body -->
         <div class="flex-row basis-5/6 px-3 text-justify md:pe-5 pe-0 pb-5">
             <h2 class="text-2xl font-medium  title-font mb-2">Description</h2>
-            <p class="leading-relaxed">The IIE Bachelor of Computer and Information Sciences in Application Development provides candidates with a thorough theoreti-
-            cal grounding and knowledge base in the key principles of information technology (IT), programming, mobile application development
-            across platforms, web development, database design, troubleshooting, testing, connectivity, customisation and project management.
-            Graduates will develop meaningful software development acumen grounded in a deep understanding of holistic application program-
-            ming and development. This qualification has been designed to develop graduates’ abilities to design, code, implement and manage
-            solution-focused by producing systemic thinkers who can develop software solutions for any device or platform.</p>
+            <p class="leading-relaxed">{data.degree.description}</p>
             <h2 class="text-2xl font-medium  title-font mb-2 mt-6">Requirements</h2>
-            <ul>
-            <li>NSC: Bachelor pass with
-                English 30% and Math/HG 40% or Math Lit/SG 60%</li>
-            <li>NC (V): Bachelor pass with
-                English 50% and Math/HG 50% or Math Lit/SG 60%</li>
-                <li>SC: Endorsement with
-                    English 33.3% and Math/HG 40% or Math Lit/SG 50%
-                </li>
-            </ul>
+            <p>{data.degree.requirements}</p>
         </div>
 
         <!-- Right-side Info Panel -->
-        <div class="mb-6 flex basis-1/6 flex-col flex-wrap gap-2 pt-5 border-l-2 border-secondary-50/50 ps-4">
+        <div class="mb-6 flex basis-1/6 flex-col flex-wrap gap-2  border-l-2 border-secondary-50/50 ps-4">
 
-            <div class="flex flex-row">
+            <div class="flex flex-row items-center">
                 <span class="text-gray-400 text-sm pe-2">
-                    <Avatar src="/favicon.png" width="w-8" />
+                    <Fa icon={faBuildingColumns} size="lg" class="h-10 w-10"/>
                 </span>
                 <span class="text-gray-400 font-bold mr-3 text-sm pr-3 py-1 ">
                     <p>Varsity College</p>
@@ -48,20 +40,21 @@
             </div>
 
             <!-- Degree Lvl + Avatar -->
-            <div class="flex flex-row">
+            <div class="flex flex-row items-center">
                 <span class="text-gray-400 text-sm pe-2">
-                    <Avatar src="/favicon.png" width="w-8" />
+                    <Fa icon={faGraduationCap} size="lg" class="h-10 w-10"/>
                 </span>
-                <span class="text-gray-400 font-bold mr-3 text-sm pr-3 py-1 ">
-                    <p>NQF Level 7</p>
+                <span class="text-gray-400 font-bold mr-3 text-sm pr-3 py-1 capitalize">
+                    <p>{data.degree.level}</p>
                 </span>
             </div>
 
 
-            <span class="font-bold title-font">LINKS</span>
-            <a href="/auth/login" class="text-primary-600 hover:underline dark:text-primary-500">Degree Website</a>
-            <a href="/auth/login" class="text-primary-600 hover:underline dark:text-primary-500">Degree PDF</a>
-            </div>    
+            <span class="font-bold title-font ps-2">LINKS</span>
+            {#each data.links as item}
+                <a href="https://{item.link}" class="text-primary-600 hover:underline dark:text-primary-500 ps-2">{item.linktitle}</a>
+            {/each}
+        </div>    
     </div>
 </div>
 

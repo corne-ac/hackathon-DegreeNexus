@@ -1,4 +1,4 @@
-<script lang="ts">
+cd <script lang="ts">
   import type { SvelteEvent, TableSource } from "@skeletonlabs/skeleton";
   import { Paginator, tableMapperValues } from "@skeletonlabs/skeleton";
   import type { PageData } from "./$types";
