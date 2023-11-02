@@ -11,7 +11,6 @@ export const load: PageServerLoad = async () => {
 				},
 				University: { select: { name: true } }
 			}
-			// offset uit figure
 		});
 		console.log(degrees);
 		return { degrees: degrees };
