@@ -14,6 +14,7 @@ export const load: PageServerLoad = async ({ params }) => {
 				requirements: true,
 				level: true,
 				tags: true,
+				photo: true,
 			}
 		});
 		return { degree: degree };
