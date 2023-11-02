@@ -24,9 +24,12 @@ const authHook = (async ({ event, resolve }) => {
 			let token = event.cookies.get('token');
 			console.log('We have our token from the part ', token);
 			if (token) {
-
-				let newVar = await verifyJWT(token);
-				return resolve(event);
+				try {
+					await verifyJWT(token);
+					return resolve(event);
+				} catch (error) {
+					throw redirect(303, '/auth/login');
+				}
 			}
 
 			throw redirect(303, '/auth/login');

@@ -8,7 +8,7 @@ import { onMount } from 'svelte';
 
 // @ts-ignore
 import * as bcrypt from 'bcryptjs';
-import { db } from '$lib/server/prisma.server';
+import { db } from '$lib/server/prisma';
 
 export const actions: Actions = {
 	// This action is called when the user clicks the theme button

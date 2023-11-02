@@ -1,5 +1,5 @@
 import type { Actions, PageServerLoad } from './$types';
-import { db } from '$lib/server/prisma.server';
+import { db } from '$lib/server/prisma';
 
 async function getRecord() {
 	return await db.degree.findMany();

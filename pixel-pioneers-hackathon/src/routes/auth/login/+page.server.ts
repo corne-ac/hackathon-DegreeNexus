@@ -3,7 +3,7 @@ import * as bcrypt from 'bcryptjs';
 import { LoginUserSchema } from '$lib/validations/user.schema';
 import { signJWT } from '$lib/server/token';
 import { JWT_EXPIRES_IN } from '$env/static/private';
-import { db } from '$lib/server/prisma.server';
+import { db } from '$lib/server/prisma';
 
 export const actions: Actions = {
 	// This action is called when the user clicks the theme button

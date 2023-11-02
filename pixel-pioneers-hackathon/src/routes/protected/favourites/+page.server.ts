@@ -1,5 +1,5 @@
 import type { PageServerLoad } from './$types';
-import { db } from '$lib/server/prisma.server';
+import { db } from '$lib/server/prisma';
 
 export const load: PageServerLoad = async (event) => {
 	let degrees = await db.user.findFirst({
