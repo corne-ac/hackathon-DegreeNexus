@@ -229,7 +229,6 @@
                   initials={data.user.name.slice(0, 1)}
 
                 />
-                <!--                  src="{data.user.photo}"-->
 
               </a>
             </div>

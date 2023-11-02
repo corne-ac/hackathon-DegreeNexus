@@ -14,7 +14,9 @@ declare namespace App {
 		} | null;*/
 
 	}
-
+	declare module '@fortawesome/solid-svg-icons/index.es' {
+		export * from '@fortawesome/solid-svg-icons';
+	}
 	// interface PageData {}
 	// interface Error {}
 	// interface Platform {}

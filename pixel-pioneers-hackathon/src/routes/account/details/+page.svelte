@@ -15,11 +15,7 @@
   }
 </script>
 
-<!-- Die page moet locked wees as die user nie in gelog is nie. weti hoe nie tho so moet uit figure -->
-<!-- Raai in die cookies is daar iets om te check mee? hell knows, maybe die JWS token of some shit -->
-
 <div class="container flex flex-col items-center rounded-xl md:mx-auto md:w-1/3 w-full variant-soft-primary my-5 p-5">
-
   <CldImage
     width="256"
     height="256"

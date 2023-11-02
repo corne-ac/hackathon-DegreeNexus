@@ -1,5 +1,5 @@
 import type { Handle } from '@sveltejs/kit';
-import { error, redirect } from '@sveltejs/kit';
+import { error } from '@sveltejs/kit';
 import { sequence } from '@sveltejs/kit/hooks';
 import { verifyJWT } from '$lib/server/token';
 import { db } from '$lib/server/prisma';
