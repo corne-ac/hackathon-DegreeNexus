@@ -5,10 +5,12 @@ async function getRecord() {
 	return await db.degree.findMany();
 }
 
-export const load: PageServerLoad = async () => {
+export const load: PageServerLoad = async (event) => {
+	let user = event.locals.user;
+
 	try {
 		const r = await getRecord();
-		return { record: r, error: null }; // Indicate success
+		return { record: r, error: null, user: user }; // Indicate success
 	} catch (e: any) {
 		return {
 			record: null,
@@ -16,7 +18,8 @@ export const load: PageServerLoad = async () => {
 				name: e.name,
 				message: e.message,
 				stack: e.stack
-			}
+			},
+			user: user
 		};
 	} finally {
 		db.$disconnect();
