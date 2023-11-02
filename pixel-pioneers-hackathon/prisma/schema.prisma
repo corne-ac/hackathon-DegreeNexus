@@ -55,6 +55,7 @@ model Degree {
   links        Link[]
   tags         Tag[]
   favoritedBy  User[]     @relation("Favorites")
+  posts        Post[]
 
   @@index([id])
 }
@@ -70,6 +71,17 @@ model User {
   createdAt       DateTime? @default(now())
   updatedAt       DateTime? @updatedAt
   favoriteDegrees Degree[]  @relation("Favorites")
+  Post            Post[]
 
   @@index([id])
+}
+
+model Post {
+  id       String @id @default(uuid())
+  user     User   @relation(fields: [userId], references: [id])
+  degree   Degree @relation(fields: [degreeId], references: [id])
+  degreeId String
+  userId   String
+  stars    Int
+  comment  String @db.VarChar(5000)
 }
