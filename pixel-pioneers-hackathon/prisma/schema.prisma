@@ -29,6 +29,7 @@ model University {
   link        String?  @db.VarChar(255)
   description String?  @db.VarChar(255)
   Campus      Campus[]
+  Degree      Degree[]
 }
 
 model Campus {
@@ -40,16 +41,18 @@ model Campus {
 }
 
 model Degree {
-  id           String   @id @default(uuid())
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
-  title        String   @db.VarChar(50)
-  description  String?  @db.VarChar(255)
-  requirements String?  @db.VarChar(255)
-  level        String?  @db.VarChar(255)
+  id           String     @id @default(uuid())
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  title        String     @db.VarChar(50)
+  description  String?    @db.VarChar(255)
+  requirements String?    @db.VarChar(255)
+  level        String?    @db.VarChar(255)
   links        Link[]
   tags         Tag[]
-  favoritedBy  User[]   @relation("Favorites")
+  favoritedBy  User[]     @relation("Favorites")
+  University   University @relation(fields: [universityId], references: [id])
+  universityId String
 
   @@index([id])
 }

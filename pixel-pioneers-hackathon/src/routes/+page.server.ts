@@ -2,15 +2,15 @@ import type { Actions, PageServerLoad } from './$types';
 import { db } from '$lib/server/prisma';
 
 async function getRecord() {
-	return await db.degree.findMany();
+	return await db.degree.findMany({
+		
+	});
 }
 
-export const load: PageServerLoad = async (event) => {
-	let user = event.locals.user;
-
+export const load: PageServerLoad = async () => {
 	try {
 		const r = await getRecord();
-		return { record: r, error: null, user: user }; // Indicate success
+		return { record: r, error: null }; // Indicate success
 	} catch (e: any) {
 		return {
 			record: null,
@@ -18,11 +18,8 @@ export const load: PageServerLoad = async (event) => {
 				name: e.name,
 				message: e.message,
 				stack: e.stack
-			},
-			user: user
+			}
 		};
-	} finally {
-		db.$disconnect();
 	}
 };
 

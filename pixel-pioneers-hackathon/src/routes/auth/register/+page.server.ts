@@ -2,13 +2,10 @@ import type { Actions } from '@sveltejs/kit';
 import { RegisterUserSchema } from '$lib/validations/user.schema';
 import { redirect } from '@sveltejs/kit';
 
-
-import { onMount } from 'svelte';
-
-
-// @ts-ignore
 import * as bcrypt from 'bcryptjs';
 import { db } from '$lib/server/prisma';
+import { signJWT } from "$lib/server/token";
+import { JWT_EXPIRES_IN } from "$env/static/private";
 
 export const actions: Actions = {
 	// This action is called when the user clicks the theme button
@@ -37,12 +34,21 @@ export const actions: Actions = {
 				password: hashedPassword
 			}
 		});
-		
-	
 
-		
-		
-		redirect(307, "/auth/login");
+		// Here will generate the JWT token and send it back to the client.
+		const token = await signJWT({ sub: user.id }, { exp: `${JWT_EXPIRES_IN}m` });
+		const tokenMaxAge = parseInt(JWT_EXPIRES_IN) * 60 * 24 * 7;
+
+		const cookieOptions = {
+			httpOnly: true,
+			path: '/',
+			secure: process.env.SVELTE_ENV !== 'development',
+			maxAge: tokenMaxAge
+		};
+
+		cookies.set('token', token, cookieOptions);
+
+		throw redirect(307, "/");
 	
 	
 		//navigate to /auth/logina

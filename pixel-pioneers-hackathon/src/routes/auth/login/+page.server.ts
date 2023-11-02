@@ -6,7 +6,6 @@ import { JWT_EXPIRES_IN } from '$env/static/private';
 import { db } from '$lib/server/prisma';
 
 export const actions: Actions = {
-	// This action is called when the user clicks the theme button
 	login: async ({ cookies, request }) => {
 		// Convert the form data into a JS object.
 		const formObj = Object.fromEntries(await request.formData());
