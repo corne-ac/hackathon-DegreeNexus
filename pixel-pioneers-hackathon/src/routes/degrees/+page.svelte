@@ -1,10 +1,11 @@
 <script lang="ts">
-  import Layout from "../+layout.svelte";
   import type { PageData } from "./$types";
   import Fa from "svelte-fa/src/fa.svelte";
   import { faGraduationCap } from "@fortawesome/free-solid-svg-icons";
+  import { ListBox, ListBoxItem } from "@skeletonlabs/skeleton";
 
   export let data: PageData;
+  let valueMultiple: string[] = ['books', 'movies'];
 </script>
 
 <div class="space-y-10">
@@ -16,8 +17,9 @@
       <button class="variant-ghost-primary">Submit</button>
     </div>
   </div>
-  <div
-    class="container justify-center items-center md:mx-auto grid grid-flow-row gap-8 sm:p-20  md:p-0 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+
+  <div class="container justify-center items-center md:mx-auto grid grid-flow-row gap-8 sm:p-20  md:p-0 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+
 
     {#each data.degrees as item }
       <a href="/degrees/{item.id}" class="card variant-soft-secondary card-hover overflow-hidden ">
@@ -45,7 +47,7 @@
 
           <span
             class="text-gray-400 font-bold inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm py-1">
-            <Fa icon={faGraduationCap} size="lg" class="h-10 w-10"/>
+            <Fa icon={faGraduationCap} size="lg" class="h-10 w-10" />
                     <small>{item.level}</small>
                 </span>
         </footer>

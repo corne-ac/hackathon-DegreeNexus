@@ -1,24 +1,23 @@
 <script lang="ts">
   import type { PageData } from "./$types";
-  import { Autocomplete, type AutocompleteOption, Avatar, InputChip } from "@skeletonlabs/skeleton";
+  import { Autocomplete, Avatar, InputChip } from "@skeletonlabs/skeleton";
   import Fa from "svelte-fa/src/fa.svelte";
   import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
   let inputChip = "";
-  let inputChipList: string[] = ["vanilla", "chocolate"];
+  let inputChipList: string[] = [];
   export let data: PageData;
-  let onInputChipSelect = (e: CustomEvent<AutocompleteOption>) => {
-    inputChipList = [...inputChipList, e.detail.label];
-    inputChip = "";
-  };
-  let flavorOptions = [
-    { label: "Vanilla", value: "vanilla" },
-    { label: "Chocolate", value: "chocolate" },
-    { label: "Strawberry", value: "strawberry" },
-    { label: "Caramel", value: "caramel" },
-    { label: "Cookies and Cream", value: "cookiescream" },
-    { label: "Peppermint", value: "peppermint" },
-  ];
+  let tagOptions = data.tags?.map((tag) => {
+    return { label: tag.name, value: tag.name };
+  }) ?? [];
+
+  function onInputChipSelect(event: CustomEvent): void {
+    if (inputChipList.includes(event.detail) === false) {
+      inputChipList = [...inputChipList, event.detail.value];
+      inputChip = "";
+    }
+  }
+
 </script>
 <div class="space-y-10">
   <div></div>
@@ -31,7 +30,19 @@
       <button class="variant-ghost-primary">Submit</button>
     </div>
   </div>
-  <InputChip bind:input={inputChip} bind:value={inputChipList} name="chips" />
+
+  <div class="text-token w-full max-w-sm space-y-2">
+    <InputChip bind:input={inputChip} bind:value={inputChipList} name="chips" chips="variant-filled-primary" max={3} />
+    <div class="card w-full max-w-sm max-h-48 p-4 overflow-y-auto" tabindex="-1">
+      <Autocomplete bind:input={inputChip} options={tagOptions} denylist={inputChipList}
+                    on:selection={onInputChipSelect} />
+    </div>
+  </div>
+  <!--<InputChip
+
+    bind:input={inputChip} bind:value={inputChipList} on:remove={inputChipRemove}
+             chips="variant-filled-primary"
+             name="chips" />
 
   <div class="card w-full max-w-sm max-h-48 p-4 overflow-y-auto" tabindex="-1">
     <Autocomplete
@@ -40,7 +51,7 @@
       denylist={inputChipList}
       on:selection={onInputChipSelect}
     />
-  </div>
+  </div>-->
 
   <div
     class="container justify-center items-center md:mx-auto grid grid-flow-row gap-8 sm:p-20  md:p-0 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">

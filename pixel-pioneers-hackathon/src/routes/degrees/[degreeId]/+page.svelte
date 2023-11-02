@@ -51,7 +51,7 @@ import type { PageData } from "../details/$types";
       {:else}
         <div class="flex flex-row flex-wrap gap-2">
           {#each data.degree?.tags ?? [] as item}
-            <span class="chip variant-soft hover:variant-filled">
+            <span class="chip variant-soft">
               {item.name}
             </span>
           {/each}
