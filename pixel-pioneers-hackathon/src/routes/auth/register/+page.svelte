@@ -1,5 +1,6 @@
 <script lang="ts">
   import { enhance } from "$app/forms";
+	import { readonly } from "svelte/store";
 
   export let form;
 </script>
@@ -58,8 +59,8 @@
         </label>
       </section>
 
-      <button type="submit" class="p-4 w-full btn variant-filled">
-        Create an account
+      <button type="submit" class="p-4 w-full btn variant-filled uppercase">
+        Create Account
       </button>
       <p class="text-sm font-light mt-6 ">Already have an account?
         <a href="/auth/login" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Login
