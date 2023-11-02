@@ -4,7 +4,7 @@ import type { PageData } from "../details/$types";
     import { Avatar, CodeBlock, Ratings } from '@skeletonlabs/skeleton';    
     import Fa from "svelte-fa/src/fa.svelte";
     import { faGraduationCap, faBuildingColumns } from "@fortawesome/free-solid-svg-icons";
-
+    import { CldImage, CldUploadWidget } from "svelte-cloudinary";
     export let data: PageData;
 
     let value = { current: 3.5, max: 5 };
@@ -14,7 +14,15 @@ import type { PageData } from "../details/$types";
     <!-- TODO: Wrap items on smaller screens -->
     <div class="flex md:flex-row flex-col justify-center justify-items-center">
        <strong class=" uppercase mx-4 text-4xl pt-0 md:pt-20 md:pe-10 pe-0 basis-3/5 pb-5 md:pb-0" >{data.degree.title}</strong>
-        <img src="/degree_hat.jpg" class="bg-black/50 w-full h-full aspect-[18/10] rounded-lg basis-2/5" alt="Degree Img" /> 
+       <div class="bg-black/50 md:w-1/2 w-full justify-center mx-auto h-full aspect-[18/10] rounded-lg basis-2/5">
+        <CldImage
+            width="w-full"
+            height="h-full"
+            src={data.degree?.photo??"cctdutckxknfz8j9xbue"}
+            alt="Description of my image"
+            class="bg-black/50 md:w-1/2 w-full justify-center mx-auto h-full aspect-[18/10] rounded-lg basis-2/5"
+        />
+    </div>
     </div>
     
     <div class="py-8 flex flex-row flex-wrap">

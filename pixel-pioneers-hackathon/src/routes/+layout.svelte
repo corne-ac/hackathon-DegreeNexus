@@ -64,7 +64,7 @@
         </div>
       </a>
 
-      <a href="/" class="flex flex-row group" on:click={toggleMenu}>
+      <a href="/universities" class="flex flex-row group" on:click={toggleMenu}>
         <div
           class="relative items-center justify-left flex flex-row h-12 w-full py-5 pe-5 ps-3 mt-2 mb-2 mx-2 variant-soft-primary hover:bg-opacity-100 text-primary-500 hover:variant-filled-primary hover:text-white rounded-3xl hover:rounded-xl transition-all duration-200 ease-linear"
         >
@@ -102,7 +102,7 @@
       slotTrail="place-content-end"
     >
       <svelte:fragment slot="lead">
-        <strong class="text-xl uppercase mx-4"><a href="/home">Pixel Pioneers</a></strong>
+        <strong class="text-xl uppercase mx-4"><a href="/home">DegreeNexus</a></strong>
       </svelte:fragment>
 
       <div class="relative">
@@ -135,7 +135,7 @@
             </a>
 
             <a
-              href="/"
+              href="/account/details"
               class="relative hidden lg:flex items-center justify-center h-12 w-12 mt-2 mb-2 mx-2 variant-soft-primary hover:bg-opacity-100 text-primary-500 hover:variant-filled-primary hover:text-white rounded-3xl hover:rounded-xl transition-all duration-200 ease-linear group"
             >
               <Fa icon={faUser} size="lg" class="h-10 w-10" />
@@ -280,16 +280,15 @@
           >
             <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
           </svg>
-          <span class="ml-3 text-xl">Pixel Pioneers</span>
+          <span class="ml-3 text-xl">DegreeNexus</span>
         </a>
         <p class="text-sm sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">
-          © 2023 Pixel Pioneers —
-          <a
+          © 2023 Pixel Pioneers
+          <!-- <a
             href="https://twitter.com/knyttneve"
             class="ml-1"
             rel="noopener noreferrer"
-            target="_blank">@---</a
-          >
+            target="_blank"></a> -->
         </p>
         <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
 					<a href="/" class="">

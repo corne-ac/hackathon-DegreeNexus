@@ -27,7 +27,8 @@ model University {
   id          String   @id @default(uuid())
   name        String   @db.VarChar(50)
   link        String?  @db.VarChar(255)
-  description String?  @db.VarChar(255)
+  description String?  @db.VarChar(5000)
+  photo       String?  @default("default.png")
   Campus      Campus[]
   Degree      Degree[]
 }
@@ -45,14 +46,15 @@ model Degree {
   createdAt    DateTime   @default(now())
   updatedAt    DateTime   @updatedAt
   title        String     @db.VarChar(50)
-  description  String?    @db.VarChar(255)
+  description  String?    @db.VarChar(5000)
   requirements String?    @db.VarChar(255)
   level        String?    @db.VarChar(255)
+  photo        String?    @default("default.png")
+  universityId String
+  University   University @relation(fields: [universityId], references: [id])
   links        Link[]
   tags         Tag[]
   favoritedBy  User[]     @relation("Favorites")
-  University   University @relation(fields: [universityId], references: [id])
-  universityId String
 
   @@index([id])
 }
