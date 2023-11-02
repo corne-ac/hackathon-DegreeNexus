@@ -9,8 +9,10 @@ async function getRecord() {
 
 export const load: PageServerLoad = async () => {
 	try {
-		const r = await getRecord();
-		return { record: r, error: null }; // Indicate success
+		const degrees = await db.degree.count();
+		const users = await db.user.count();
+
+		return { error: null, degrees, users }; // Indicate success
 	} catch (e: any) {
 		return {
 			record: null,

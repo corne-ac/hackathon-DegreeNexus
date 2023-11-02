@@ -7,7 +7,7 @@
   import { storeTheme } from "$lib/stores/stores";
   import { enhance } from "$app/forms";
   import { arrow, autoUpdate, computePosition, flip, offset, shift } from "@floating-ui/dom";
-
+  import { CldImage, CldUploadWidget } from "svelte-cloudinary";
   import Fa from "svelte-fa/src/fa.svelte";
   import { faBars, faBuildingColumns, faGraduationCap, faPen, faStar, faUser } from "@fortawesome/free-solid-svg-icons";
   import type { PageData } from "./$types";
@@ -64,7 +64,7 @@
         </div>
       </a>
 
-      <a href="/universities" class="flex flex-row group" on:click={toggleMenu}>
+      <a href="/universi  ties" class="flex flex-row group" on:click={toggleMenu}>
         <div
           class="relative items-center justify-left flex flex-row h-12 w-full py-5 pe-5 ps-3 mt-2 mb-2 mx-2 variant-soft-primary hover:bg-opacity-100 text-primary-500 hover:variant-filled-primary hover:text-white rounded-3xl hover:rounded-xl transition-all duration-200 ease-linear"
         >
@@ -102,7 +102,8 @@
       slotTrail="place-content-end"
     >
       <svelte:fragment slot="lead">
-        <strong class="text-xl uppercase mx-4"><a href="/home">DegreeNexus</a></strong>
+        
+        <strong class="text-xl uppercase mx-4 flex justify-center items-center"><img src="/images/icons/icon-128x128.png" class="w-16 h-16" alt="Logo"/><a href="/" class="hidden md:flex">DegreeNexus</a></strong>
       </svelte:fragment>
 
       <div class="relative">
@@ -123,7 +124,7 @@
             </a>
 
             <a
-              href="/"
+              href="/universities"
               class="relative hidden lg:flex items-center justify-center h-12 w-12 mt-2 mb-2 mx-2 variant-soft-primary hover:bg-opacity-100 text-primary-500 hover:variant-filled-primary hover:text-white rounded-3xl hover:rounded-xl transition-all duration-200 ease-linear group"
             >
               <Fa icon={faBuildingColumns} size="lg" class="h-10 w-10" />
@@ -223,12 +224,23 @@
           {#if data.user}
             <div class="flex items-center overflow-hidden">
               <a href="/account/details">
-                <Avatar
-                  border="border-4 border-surface-300-600-token hover:!border-primary-500"
-                  cursor="cursor-pointer"
-                  initials={data.user.name.slice(0, 1)}
+                {#if data.user.photo }
 
-                />
+                  <CldImage
+                    width="64"
+                    height="64"
+                    src={data.user?.photo??"cctdutckxknfz8j9xbue"}
+                    alt="Description of my image"
+                    class="rounded-full mx-auto"
+                  />
+
+                {:else}
+                <Avatar
+                border="border-4 border-surface-300-600-token hover:!border-primary-500"
+                cursor="cursor-pointer"
+                initials={data.user.name.slice(0, 1)}
+              />
+                {/if}
 
               </a>
             </div>
@@ -260,25 +272,16 @@
   <slot />
   <svelte:fragment slot="pageFooter">
     <footer class="body-font">
-      <div class="container px-5 py-5 pt-20 mx-auto flex items-center sm:flex-row flex-col">
+      <div class="container px-5 py-5 pt-20 mx-auto flex items-center justify-center sm:flex-row flex-col">
         <a
           href="/"
           class="flex title-font font-medium items-center md:justify-start justify-center"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full"
-            viewBox="0 0 24 24"
-            style="--darkreader-inline-stroke: currentColor;"
-            data-darkreader-inline-stroke=""
-          >
-            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-          </svg>
+          <img
+            src="/images/icons/icon-128x128.png"
+            class="w-10 h-10"
+            alt="Logo"
+          />
           <span class="ml-3 text-xl">DegreeNexus</span>
         </a>
         <p class="text-sm sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">

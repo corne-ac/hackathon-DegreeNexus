@@ -9,7 +9,8 @@ export const load: PageServerLoad = async () => {
 				tags: {
 					take: 3
 				},
-				University: { select: { name: true } }
+				University: { select: { name: true } },
+				
 			}
 			// offset uit figure
 		});

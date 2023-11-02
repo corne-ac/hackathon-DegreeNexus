@@ -14,7 +14,7 @@
         <CldImage
             width="w-full"
             height="h-full"
-            src={data.user?.photo ?? "cctdutckxknfz8j9xbue"}
+            src={data.university?.photo ?? "cctdutckxknfz8j9xbue"}
             alt="Description of my image"
             class="bg-black/50 md:w-1/2 w-full justify-center mx-auto h-full aspect-[18/10] rounded-lg basis-2/5"
         />
@@ -28,6 +28,11 @@
 
 </div>
 
+<div class="container md:w-2/3 w-full justify-center items-center rounded-xl mx-auto p-3 mb-4">
+  <p class="uppercase text-4xl text-primary-200">Degrees Offered at Institution</p>
+</div>
+
+
 
 <div
     class="container justify-center items-center md:w-2/3 w-full md:mx-auto grid grid-flow-row gap-8 sm:p-20  md:p-0 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
@@ -37,7 +42,14 @@
     <a href="/degrees/{item.id}" class="card variant-soft-secondary card-hover overflow-hidden ">
       <!-- top image -->
       <header>
-        <img src="/degree_hat.jpg" class="bg-black/50 w-full aspect-[18/10] " alt="Degree Img" />
+        <!-- <img src="/degree_hat.jpg" class="bg-black/50 w-full aspect-[18/10] " alt="Degree Img" /> -->
+        <CldImage
+            width="w-full"
+            height="h-full"
+            src={item?.photo??"cctdutckxknfz8j9xbue"}
+            alt="Degree Image"
+            class="bg-black/50 aspect-[18/10]"
+          />
         <!-- TODO: Fix aspect ratio of images, currently warps to fit aspect -->
       </header>
       <!-- content of card -->

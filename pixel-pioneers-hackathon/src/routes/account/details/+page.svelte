@@ -15,7 +15,10 @@
   }
 </script>
 
-<div class="container flex flex-col items-center rounded-xl md:mx-auto md:w-1/3 w-full variant-soft-primary my-5 p-5">
+<div class="card flex flex-col items-center w-full max-w-md p-6 m-6 mx-auto">
+
+  <p class="uppercase font-semibold h2 pb-5">Account details</p>
+
   <CldImage
     width="256"
     height="256"
@@ -23,15 +26,16 @@
     alt="Description of my image"
     class="rounded-full mx-auto"
   />
-  <CldUploadWidget uploadPreset="xtglb5ig" let:open let:isLoading onUpload={uploadedFile}>
-    <button type="button" class="btn variant-filled" on:click={open} disabled={isLoading}>
+  
+    <CldUploadWidget uploadPreset="xtglb5ig" let:open let:isLoading onUpload={uploadedFile}>
+      <button type="button" class="btn variant-soft-primary hover:variant-filled-primary m-3" on:click={open} disabled={isLoading}>
       <Fa class="pe-3" icon={faPen} size="lg" />
       Upload an Image
     </button>
   </CldUploadWidget>
 
-
-  <form action="?/updateInfo" method="POST" use:enhance>
+  <div class="container w-full max-w-md mx-auto">
+    <form action="?/updateInfo" method="POST" use:enhance>
     <input hidden name="imageId" value={imageId}>
     <section class="p-4 space-y-4">
       <label class="label">
@@ -52,5 +56,7 @@
             class="mt-6 mx-auto btn variant-filled-secondary justify-center hover:variant-filled-primary uppercase">Edit
     </button>
   </form>
+  </div>
+  
 
 </div>

@@ -5,6 +5,7 @@ import forms from '@tailwindcss/forms';
 // @ts-ignore
 import typography from '@tailwindcss/typography';
 import { skeleton } from '@skeletonlabs/tw-plugin';
+import lineClamp from '@tailwindcss/line-clamp';
 
 export default {
 	darkMode: 'class',
@@ -17,6 +18,7 @@ export default {
 	},
 	plugins: [
 		forms,
+		lineClamp,
 		typography,
 		skeleton({
 			themes: {

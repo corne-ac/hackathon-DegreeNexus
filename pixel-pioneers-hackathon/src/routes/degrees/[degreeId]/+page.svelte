@@ -18,7 +18,7 @@
         width="w-full"
         height="h-full"
         src={data.degree?.photo??"cctdutckxknfz8j9xbue"}
-        alt="Description of my image"
+        alt="Degree Image"
         class="bg-black/50 md:w-1/2 w-full justify-center mx-auto h-full aspect-[18/10] rounded-lg basis-2/5"
       />
     </div>
@@ -81,7 +81,7 @@
       {/if}
     </div>
   </div>
-
+</div>
 
   <!-- Review -->
   <div
@@ -130,4 +130,3 @@
 
 
   </div>
-</div>
