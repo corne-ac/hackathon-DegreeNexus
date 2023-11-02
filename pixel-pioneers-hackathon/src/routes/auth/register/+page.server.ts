@@ -2,7 +2,7 @@ import type { Actions } from '@sveltejs/kit';
 import { RegisterUserSchema } from '$lib/validations/user.schema';
 // @ts-ignore
 import * as bcrypt from 'bcryptjs';
-import { db } from '$lib/server/prisma';
+import { db } from '$lib/server/prisma.server';
 
 export const actions: Actions = {
 	// This action is called when the user clicks the theme button

@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "dev": "npx prisma generate --no-engine && vite dev",
+    "dev": "vite dev",
     "dev_open": "npm run dev -- --open",
     "build": "npx prisma generate --no-engine && vite build",
     "preview": "npx prisma generate --no-engine && vite preview",
