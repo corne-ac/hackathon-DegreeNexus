@@ -2,30 +2,28 @@ import { db } from '$lib/server/prisma';
 import type { PageServerLoad } from './$types';
 import { error } from '@sveltejs/kit';
 
-export const load: PageServerLoad = async ({params}) => {
+export const load: PageServerLoad = async ({ params }) => {
 	try {
-
-        const university = await db.university.findUnique({
+		const university = await db.university.findUnique({
 			where: {
-				id: params.universityId,
-			  }
-        });
+				id: params.universityId
+			}
+		});
 
 		const degrees = await db.degree.findMany({
 			where: {
-				universityId: params.universityId,
-			  }
-        });
-        
+				universityId: params.universityId
+			}
+		});
+
 		if (university != null) {
 			return { university: university, degrees: degrees };
-		}		
+		}
 
 		throw error(404, 'not found');
-        
 	} catch (e: any) {
 		return {
-            university: [],
+			university: [],
 			error: {
 				name: e.name,
 				message: e.message,
