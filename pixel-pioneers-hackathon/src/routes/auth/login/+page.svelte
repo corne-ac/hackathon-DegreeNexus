@@ -40,7 +40,7 @@
       </section>
 
       <button type="submit" class="mt-6 p-4 w-full btn variant-filled">
-        Create an account
+        Login
       </button>
       <p class="text-sm font-light mt-6">
         Don't have an account?
