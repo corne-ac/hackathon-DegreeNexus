@@ -1,6 +1,22 @@
 import { db } from '$lib/server/prisma';
-import type { PageServerLoad } from './$types';
+import type { Actions, PageServerLoad } from "./$types";
 
+export const actions: h Actions = {
+	comment: async ({ request, locals, params }) => {
+		let formData = await request.formData();
+		console.log(formData);
+		await db.post.create({
+			data: {
+				userId: locals.user?.id,
+				comment: formData.get('comment')?.toString() ?? '',
+				degreeId: params.degreeId,
+				stars: parseInt(formData.get('stars')?.toString() ?? '1')
+			}
+		});
+
+		return { posts: await db.post.findMany({}) };
+	}
+};
 export const load: PageServerLoad = async ({ params }) => {
 	try {
 		let degree = await db.degree.findUnique({
@@ -14,10 +30,11 @@ export const load: PageServerLoad = async ({ params }) => {
 				requirements: true,
 				level: true,
 				tags: true,
-				photo: true,
+				photo: true
 			}
 		});
-		return { degree: degree };
+
+		return { degree: degree, posts: await db.post.findMany({}) };
 	} catch (e: any) {
 		return {
 			degree: null,
