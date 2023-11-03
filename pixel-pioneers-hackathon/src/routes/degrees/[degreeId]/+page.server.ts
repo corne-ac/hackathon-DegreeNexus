@@ -1,16 +1,16 @@
 import { db } from '$lib/server/prisma';
-import type { PageServerLoad } from "./$types";
-import type { Actions } from "@sveltejs/kit";
+import type { PageServerLoad } from './$types';
+import type { Actions } from '@sveltejs/kit';
 
-export const actions:  Actions = {
+export const actions: Actions = {
 	comment: async ({ request, locals, params }) => {
 		let formData = await request.formData();
 		console.log(locals.user);
 		await db.post.create({
 			data: {
-				userId: locals.user?.id,
+				userId: locals.user?.id ?? '',
 				comment: formData.get('comment')?.toString() ?? '',
-				degreeId: params.degreeId,
+				degreeId: params.degreeId??"",
 				stars: parseInt(formData.get('stars')?.toString() ?? '1')
 			}
 		});
