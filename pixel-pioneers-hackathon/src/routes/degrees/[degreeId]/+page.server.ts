@@ -1,7 +1,8 @@
 import { db } from '$lib/server/prisma';
-import type { Actions, PageServerLoad } from "./$types";
+import type { PageServerLoad } from "./$types";
+import type { Actions } from "@sveltejs/kit";
 
-export const actions: h Actions = {
+export const actions:  Actions = {
 	comment: async ({ request, locals, params }) => {
 		let formData = await request.formData();
 		console.log(formData);
