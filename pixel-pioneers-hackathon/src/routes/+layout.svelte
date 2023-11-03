@@ -64,7 +64,7 @@
         </div>
       </a>
 
-      <a href="/universi  ties" class="flex flex-row group" on:click={toggleMenu}>
+      <a href="/universities" class="flex flex-row group" on:click={toggleMenu}>
         <div
           class="relative items-center justify-left flex flex-row h-12 w-full py-5 pe-5 ps-3 mt-2 mb-2 mx-2 variant-soft-primary hover:bg-opacity-100 text-primary-500 hover:variant-filled-primary hover:text-white rounded-3xl hover:rounded-xl transition-all duration-200 ease-linear"
         >

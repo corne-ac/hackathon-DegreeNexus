@@ -1,16 +1,17 @@
 <script lang="ts">
-  import type { PageData } from "./$types";
+  import type { ActionData, PageData } from "./$types";
   import Fa from "svelte-fa/src/fa.svelte";
-  import { faGraduationCap, faSearch } from "@fortawesome/free-solid-svg-icons";
+  import { faGraduationCap, faSearch, faComment, faPaperPlane, faFilter } from "@fortawesome/free-solid-svg-icons";
   import { CldImage } from "svelte-cloudinary";
   import { Autocomplete, Avatar, InputChip } from "@skeletonlabs/skeleton";
-
+  import { enhance} from '$app/forms';
   export let data: PageData;
+  export let form: ActionData;
   let valueMultiple: string[] = ["books", "movies"];
-
+  
   //Tags
   let inputChip = "";
-  let inputChipList: string[] = [];
+  let inputChipList: string[] =  [];
   let tagOptions = data.tags?.map((tag) => {
     return { label: tag.name, value: tag.name };
   }) ?? [];
@@ -22,42 +23,70 @@
     }
   }
 
+  let value = "hidden";
+
+  function toggleMenu() {
+    if (value === "hidden") value = "card";
+    else value = "hidden";
+  }
+
+  function getFormChips() {
+    console.log(form?.chips)
+    return inputChipList
+
+  }
+  const c = getFormChips()
+  console.log(form?.chips)
+  
+
 </script>
 
 <div class="space-y-10">
   
   <!--Search bar-->
-
-  <div class="space-y-10 w-full justify-center items-center flex flex-col">
-    <div></div>
-    <div class="flex items-center w-full justify-center mx-auto max-w-7xl space-y-10">
-      <div class=" input-group input-group-divider grid-cols-[auto_1fr_auto]">
-        <div class="input-group-shim hover:variant-filled-primary variant-soft-primary">
-          <Fa icon={faSearch} />
+    <form class="w-full justify-center items-center flex flex-col" method="POST" action="?/degrees" use:enhance>
+        <div class="card mx-auto mb-2 mt-10 p-3 md:w-1/2 w-full">      
+        <!-- search -->
+        <div class="container">
+          <div class="input-group input-group-divider grid-cols-[auto_1fr_auto] rounded-container-token">
+            <div class="input-group-shim justify-center items-center hover:variant-filled-primary variant-soft-primary" on:click={toggleMenu}>
+              <Fa icon={faFilter} />
+            </div>
+            <input
+              value={form?.searchTerm ?? ''}
+              class="bg-transparent border-0 ring-0"
+              name="search"
+              id="search"
+              placeholder="Write a message..."
+              />
+            <button type="submit" class="hover:variant-filled-primary variant-soft-primary">
+              <Fa icon={faSearch}></Fa>
+            </button>
+          </div>
         </div>
-        <input type="search" placeholder="Search..." />
-        <button class="hover:variant-filled-primary variant-soft-primary">Submit</button>
       </div>
-    </div>
+      
+      <!-- tags -->
+      <div class="{value} p-4 text-token w-1/2 max-w-sm space-y-2">
+        <InputChip name="chips" bind:input={inputChip} bind:value={inputChipList} chips="variant-filled-primary" max={3} />
+        <div class="card w-full max-w-sm max-h-48 p-4 overflow-y-auto variant-ghost" tabindex="-1">
+          <Autocomplete bind:input={inputChip} options={tagOptions} denylist={inputChipList}
+                        on:selection={onInputChipSelect} />
+        </div>
+      </div>
+
+      <input hidden value={inputChipList} name="selectedChips">
+    </form>
     
-    <!-- tags -->
-    <div class="card p-4 text-token w-1/2 max-w-sm space-y-2">
-      <InputChip bind:input={inputChip} bind:value={inputChipList} name="chips" chips="variant-filled-primary" max={3} />
-      <div class="card w-full max-w-sm max-h-48 p-4 overflow-y-auto variant-ghost" tabindex="-1">
-        <Autocomplete bind:input={inputChip} options={tagOptions} denylist={inputChipList}
-                      on:selection={onInputChipSelect} />
-      </div>
-  </div>
   
-</div>
+
 <!-- Tag end -->
 
 
   <div
     class="container justify-center items-center md:mx-auto grid grid-flow-row gap-8 sm:p-20  md:p-0 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-    {#each data.degrees as item }
 
-
+    {#each form?.degrees ?? data.degrees as item }
       <a href="/degrees/{item.id}" class="card variant-soft-secondary card-hover overflow-hidden ">
         <!-- top image -->
         <header>
