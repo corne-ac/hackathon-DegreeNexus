@@ -1,7 +1,7 @@
 <script lang="ts">
   import { faBuildingColumns, faGraduationCap } from "@fortawesome/free-solid-svg-icons";
   import type { PageData } from "./$types";
-  import { Ratings } from "@skeletonlabs/skeleton";
+  import { RadioItem, Ratings } from "@skeletonlabs/skeleton";
   import Fa from "svelte-fa/src/fa.svelte";
   import { CldImage } from "svelte-cloudinary";
   import { faPaperPlane, faComment } from "@fortawesome/free-solid-svg-icons";
@@ -47,7 +47,7 @@
       <h2 class="text-2xl font-medium  title-font mb-2">Description</h2>
       <p class="leading-relaxed whitespace-pre-wrap">{desc}</p>
       <h2 class="text-2xl font-medium  title-font mb-2 mt-6">Requirements</h2>
-      <p>{data.degree?.requirements}</p>
+      <p class="whitespace-pre-wrap">{data.degree?.requirements?.replaceAll("\\n", "\n")}</p>
 
       <h2 class="text-2xl font-medium  title-font mb-2 mt-6">Tags</h2>
       {#if data.degree?.tags.length === 0}
@@ -71,7 +71,7 @@
                     <Fa icon={faBuildingColumns} size="lg" class="h-10 w-10" />
                 </span>
         <span class="text-gray-400 font-bold mr-3 text-sm pr-3 py-1 ">
-                    <p>Varsity College</p>
+                    <p>{data?.degree?.University?.name}</p>
                 </span>
       </div>
 
@@ -105,7 +105,7 @@
 </div>
 <!-- Review -->
 <div class="container text-center w-full justify-center items-center rounded-xl mx-auto p-3 mb-4">
-  <p class="uppercase text-4xl text-primary-200">Degrees Reviews</p>
+  <p class="uppercase text-4xl text-primary-200">Degree Reviews</p>
 </div>
 <div class="card mx-auto my-10 p-3 md:w-1/2 w-full">
   <div class=" my-3">
@@ -163,11 +163,11 @@
              viewBox="0 0 24 24" style="--darkreader-inline-stroke: currentColor;" data-darkreader-inline-stroke="">
           <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
         </svg>
-        <span class="ml-3 text-md">Username</span>
+        <span class="ml-3 text-md">{item.user.name}</span>
       </a>
 
       <div class="flex items-center justify-items-start ps-5">
-        <Ratings value={3.5} max={5}>
+        <Ratings value={item.stars} max={5}>
           <svelte:fragment slot="empty">
             <svg class="w-6 aspect-square" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
               <path
@@ -192,9 +192,7 @@
     </div>
 
     <div class="p-4 pt-6">
-      <p>This a review of this dehgree that spands multiple lines if needed. trust meh, dont do this degree. lorekm
-        ipsum
-        pissum possum words that are fillers neh afrikaans engels.</p>
+      <p>{item.comment}</p>
     </div>
 
 

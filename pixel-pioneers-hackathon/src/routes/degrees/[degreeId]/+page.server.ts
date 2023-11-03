@@ -5,7 +5,7 @@ import type { Actions } from "@sveltejs/kit";
 export const actions:  Actions = {
 	comment: async ({ request, locals, params }) => {
 		let formData = await request.formData();
-		console.log(formData);
+		console.log(locals.user);
 		await db.post.create({
 			data: {
 				userId: locals.user?.id,
@@ -31,11 +31,12 @@ export const load: PageServerLoad = async ({ params }) => {
 				requirements: true,
 				level: true,
 				tags: true,
-				photo: true
+				photo: true,
+				University: true
 			}
 		});
 
-		return { degree: degree, posts: await db.post.findMany({}) };
+		return { degree: degree, posts: await db.post.findMany({include: {user: true}}) };
 	} catch (e: any) {
 		return {
 			degree: null,

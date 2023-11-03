@@ -102,7 +102,7 @@
         </header>
         <!-- content of card -->
         <div class="p-3 space-y-2">
-          <h2 class="uppercase text-lg">{item.title}</h2>
+          <h2 class="uppercase text-lg line-clamp-2">{item.title}</h2>
           <article>
             <p class="leading-tight tracking-tight line-clamp-3">
               {item.description?.replaceAll('\\n', ' ')}

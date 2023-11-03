@@ -2,7 +2,7 @@
     import Layout from "../+layout.svelte";
     import type { PageData } from "./$types";
     import Fa from "svelte-fa/src/fa.svelte";
-    import { faScroll } from "@fortawesome/free-solid-svg-icons";
+    import { faScroll, faFilter, faSearch } from "@fortawesome/free-solid-svg-icons";
     import { CldImage, CldUploadWidget } from "svelte-cloudinary";
     
     export let data: PageData;
@@ -10,11 +10,24 @@
   
   <div class="space-y-10">
     <div></div>
-    <div class="flex items-center justify-center mx-auto max-w-7xl space-y-10">
-      <div class=" input-group input-group-divider grid-cols-[auto_1fr_auto]">
-        <div class="input-group-shim">(icon)</div>
-        <input type="search" placeholder="Search..." />
-        <button class="variant-ghost-primary">Submit</button>
+    <div class="card mx-auto mb-2 mt-10 p-3 md:w-1/2 w-full">      
+      <!-- search -->
+      <div class="container">
+        <div class="input-group input-group-divider grid-cols-[auto_1fr_auto] rounded-container-token">
+          <div class="input-group-shim justify-center items-center hover:variant-filled-primary variant-soft-primary" on:click={toggleMenu}>
+            <Fa icon={faFilter} />
+          </div>
+          <input
+            value=''
+            class="bg-transparent border-0 ring-0"
+            name="search"
+            id="search"
+            placeholder="Write a message..."
+            />
+          <button type="submit" class="hover:variant-filled-primary variant-soft-primary">
+            <Fa icon={faSearch}></Fa>
+          </button>
+        </div>
       </div>
     </div>
     <div

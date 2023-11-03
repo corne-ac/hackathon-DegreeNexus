@@ -28,7 +28,7 @@
         <h2 class="text-2xl font-medium mt-4 title-font mb-2">Description</h2>
         <p class="leading-relaxed m-5 whitespace-pre-wrap">{desc}</p>
         <a href="https://{data.university.link}"
-             class="text-primary-600 hover:underline dark:text-primary-500 ps-2">Link to Website</a>
+             class="text-primary-600 hover:underline dark:text-primary-500 ps-2 uppercase">Link to Website</a>
     </div>
 
 </div>
@@ -59,9 +59,9 @@
       </header>
       <!-- content of card -->
       <div class="p-3 space-y-2">
-        <h2 class="uppercase text-lg">{item.title}</h2>
+        <h2 class="uppercase text-lg line-clamp-2">{item.title}</h2>
         <article>
-          <p class="leading-tight tracking-tight">
+          <p class="leading-tight tracking-tight line-clamp-3">
             {item.description}
           </p>
         </article>
