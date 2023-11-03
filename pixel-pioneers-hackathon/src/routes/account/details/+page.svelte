@@ -40,21 +40,26 @@
     <section class="p-4 space-y-4">
       <label class="label">
         <span class="text-2xl">Username</span>
-        <input class="input" readonly type="text" placeholder="Username" value="current-username" />
+        <input class="input" readonly type="text" placeholder="Username" value={data?.user?.name} />
       </label>
       <label class="label">
         <span class="text-2xl">Email</span>
-        <input class="input" readonly type="text" name="userEmail" value="account@email" />
+        <input class="input" readonly type="text" name="userEmail" value={data?.user?.email} />
       </label>
       <label class="label">
         <span class="text-2xl">Password</span>
-        <input class="input" readonly type="password" name="userPassword" value="my-placeholder" />
+        <input class="input" readonly type="password" name="userPassword" />
       </label>
     </section>
     <!-- TODO: Edit should toggle entire purpose of page -->
-    <button type="submit"
-            class="mt-6 mx-auto btn variant-filled-secondary justify-center hover:variant-filled-primary uppercase">Edit
-    </button>
+<!--    <button type="submit"-->
+<!--            class=" w-fill mx-auto btn variant-filled-secondary justify-center hover:variant-filled-primary uppercase">Save-->
+<!--    </button>-->
+
+      <button type="submit" class="mt-6 p-4 w-full btn variant-filled">
+        Save
+      </button>
+
   </form>
   </div>
   
