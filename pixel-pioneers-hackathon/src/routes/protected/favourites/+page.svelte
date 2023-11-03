@@ -19,6 +19,7 @@
   }
 
 </script>
+
 <div class="space-y-10">
   <div></div>
   <div class="flex items-center justify-center mx-auto max-w-7xl space-y-10">
@@ -38,20 +39,6 @@
                     on:selection={onInputChipSelect} />
     </div>
   </div>
-  <!--<InputChip
-
-    bind:input={inputChip} bind:value={inputChipList} on:remove={inputChipRemove}
-             chips="variant-filled-primary"
-             name="chips" />
-
-  <div class="card w-full max-w-sm max-h-48 p-4 overflow-y-auto" tabindex="-1">
-    <Autocomplete
-      bind:input={inputChip}
-      options={flavorOptions}
-      denylist={inputChipList}
-      on:selection={onInputChipSelect}
-    />
-  </div>-->
 
   <div
     class="container justify-center items-center md:mx-auto grid grid-flow-row gap-8 sm:p-20  md:p-0 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">

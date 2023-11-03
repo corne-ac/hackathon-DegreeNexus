@@ -13,8 +13,11 @@ export const load: PageServerLoad = async () => {
 				
 			}
 		});
-		console.log(degrees);
-		return { degrees: degrees };
+		
+		// get tags
+		let tags = await db.tag.findMany({});
+
+	return { degrees: degrees, tags: tags };
 	} catch (e: any) {
 		return {
 			degrees: [],

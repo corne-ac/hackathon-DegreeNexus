@@ -6,6 +6,9 @@
   import { CldImage } from "svelte-cloudinary";
 
   export let data: PageData;
+
+  let desc = data?.degree?.description?.replaceAll('\\n', '\n');
+  console.log(desc);
 </script>
 
 <div class="container justify-center items-center rounded-xl md:mx-auto variant-soft-primary my-10 p-3 mb-10">
@@ -29,7 +32,7 @@
     <!-- Main Text body -->
     <div class="flex-row basis-5/6 px-3 text-justify md:pe-5 pe-0 pb-5">
       <h2 class="text-2xl font-medium  title-font mb-2">Description</h2>
-      <p class="leading-relaxed">{data.degree?.description}</p>
+      <p class="leading-relaxed whitespace-pre-wrap">{desc}</p>
       <h2 class="text-2xl font-medium  title-font mb-2 mt-6">Requirements</h2>
       <p>{data.degree?.requirements}</p>
 

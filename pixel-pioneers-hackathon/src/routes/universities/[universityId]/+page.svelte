@@ -7,6 +7,9 @@
     import { CldImage, CldUploadWidget } from "svelte-cloudinary";
 
     export let data: PageData;
+
+    let desc = data.university.description.replaceAll('\\n', '\n');
+    console.log(desc);
 </script>
 
 <div class="container md:w-2/3 w-full justify-center items-center rounded-xl mx-auto variant-soft-primary my-10 p-3 mb-10">
@@ -23,7 +26,9 @@
     <div class= "mt-10 mx-6">
         <strong class=" uppercase mx-auto text-4xl pt-0 md:pt-20 md:pe-10 pe-0 pb-5 md:pb-0 align-center justify-center" >{data.university.name}</strong>
         <h2 class="text-2xl font-medium mt-4 title-font mb-2">Description</h2>
-        <p class="leading-relaxed m-5">{data.university.description}</p>
+        <p class="leading-relaxed m-5 whitespace-pre-wrap">{desc}</p>
+        <a href="https://{data.university.link}"
+             class="text-primary-600 hover:underline dark:text-primary-500 ps-2">Link to Website</a>
     </div>
 
 </div>
