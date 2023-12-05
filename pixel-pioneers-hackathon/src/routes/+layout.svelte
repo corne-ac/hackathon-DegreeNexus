@@ -102,8 +102,9 @@
       slotTrail="place-content-end"
     >
       <svelte:fragment slot="lead">
-        
-        <strong class="text-xl uppercase mx-4 flex justify-center items-center"><img src="/images/icons/icon-128x128.png" class="w-16 h-16" alt="Logo"/><a href="/" class="hidden md:flex">DegreeNexus</a></strong>
+
+        <strong class="text-xl uppercase mx-4 flex justify-center items-center"><img
+          src="/images/icons/icon-128x128.png" class="w-16 h-16" alt="Logo" /><a href="/" class="hidden md:flex">DegreeNexus</a></strong>
       </svelte:fragment>
 
       <div class="relative">
@@ -229,17 +230,17 @@
                   <CldImage
                     width="64"
                     height="64"
-                    src={data.user?.photo??"cctdutckxknfz8j9xbue"}
+                    src={data.user?.photo === "default.png" ? "pmjkothoflqijnghvifq" : data.user?.photo}
                     alt="Description of my image"
                     class="rounded-full mx-auto"
                   />
 
                 {:else}
-                <Avatar
-                border="border-4 border-surface-300-600-token hover:!border-primary-500"
-                cursor="cursor-pointer"
-                initials={data.user.name.slice(0, 1)}
-              />
+                  <Avatar
+                    border="border-4 border-surface-300-600-token hover:!border-primary-500"
+                    cursor="cursor-pointer"
+                    initials={data.user.name.slice(0, 1)}
+                  />
                 {/if}
 
               </a>

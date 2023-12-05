@@ -14,7 +14,7 @@
       <!-- search -->
       <div class="container">
         <div class="input-group input-group-divider grid-cols-[auto_1fr_auto] rounded-container-token">
-          <div class="input-group-shim justify-center items-center hover:variant-filled-primary variant-soft-primary" on:click={toggleMenu}>
+          <div class="input-group-shim justify-center items-center hover:variant-filled-primary variant-soft-primary">
             <Fa icon={faFilter} />
           </div>
           <input

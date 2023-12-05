@@ -22,7 +22,7 @@
   <CldImage
     width="256"
     height="256"
-    src={data.user?.photo??"cctdutckxknfz8j9xbue"}
+    src={data.user?.photo === "default.png" ? "pmjkothoflqijnghvifq" : data.user?.photo}
     alt="Description of my image"
     class="rounded-full mx-auto"
   />
